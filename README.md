@@ -36,6 +36,8 @@ flowchart LR
     GR --> AUD["audit.py v2\nJSONL con hash encadenado"]
     AUD --> REV["Componente 4 · Revisión\n(web: vista Revisión)"]
     REV -->|"decisión: confirma / corrige"| AUD
+    REV -. "opcional: FHIR_ENABLED" .-> FHIR["HAPI FHIR R4\nEncounter · Provenance · AuditEvent"]
+    GR -. "CDS Hooks" .-> CDS["/cds-services/triage-copiloto\ntarjeta con cita"]
     R --> C0["Línea base C0 (baseline.py)\ncongelada, sin código compartido"]
 ```
 
@@ -227,16 +229,19 @@ Endpoints: `/api/health`, `/api/consulta` (devuelve además `record_hash`,
 `backend_used`, `degraded`, `escalated`, `n_modelo`, `n_reglas`, `n_final`,
 `alarms` y el texto del fragmento citado), `/api/decision`,
 `/api/auditoria?limit=50` (últimos eventos, `verify_chain` y completitud),
-`/api/experimento`, `/api/dataset`, `/api/casos`, `/api/corpus`. El registro
-web es `results/audit_web_v2.jsonl` (excluido de git).
+`/api/experimento`, `/api/dataset`, `/api/casos`, `/api/corpus`, más
+`/cds-services` y `/cds-services/triage-copiloto` (ver "CDS Hooks y FHIR").
+El registro web es `results/audit_web_v2.jsonl` (excluido de git).
 
 `web/backend/tests/test_app.py` prueba los endpoints (incluidas las
-validaciones 422/404 y el flujo consulta → decisión → auditoría) con
-`fastapi.testclient.TestClient` (requiere las dependencias de
-`web/backend/requirements.txt`; no forma parte de la suite principal
-`tests/`, que sigue sin dependencias). El frontend se verificó manualmente
-end-to-end en navegador (las cuatro vistas, con datos reales) durante el
-desarrollo.
+validaciones 422/404 y el flujo consulta → decisión → auditoría) y
+`web/backend/tests/test_cds_fhir.py` prueba CDS Hooks y la escritura FHIR con
+el servidor simulado. Ambas usan `fastapi.testclient.TestClient`: requieren
+las dependencias de `web/backend/requirements.txt` más `pytest`, y no forman
+parte de la suite principal `tests/`, que sigue sin dependencias. La vista
+Revisión se verificó end-to-end en el navegador: elección activa, motivo
+obligatorio al corregir y decisión registrada con la cadena de auditoría
+válida.
 
 ## Ruta principal (Gemini): configuración y reproducibilidad
 
@@ -560,7 +565,12 @@ Lectura honesta:
 
 - El gold standard es intra-equipo, no una validación clínica externa. El
   κ_w reportado mide consistencia interna del criterio aplicado, no
-  corrección clínica.
+  corrección clínica. La revisión de las advertencias del validador
+  (`data/revision_gold_standard.md`) deja dos puntos abiertos para el equipo:
+  - elegir la cita de referencia de C003, que afecta las métricas de
+    recuperación y de fidelidad;
+  - un sesgo sistemático de sub-triage del evaluador 2, que es el menos
+    urgente en 8 de las 9 discrepancias de nivel.
 - El corpus normativo es una reconstrucción sintética reducida, no el texto
   oficial completo de la Resolución 5596 ni de guías clínicas institucionales.
 - En E1-E4, el modo "embeddings clínicos en español" es un proxy determinista
@@ -588,7 +598,8 @@ Lectura honesta:
 
 **Ya implementado:** ruta principal Gemini (recuperación híbrida + LLM
 restringido), respaldo determinista marcado, guardarraíl de alarmas,
-auditoría encadenada y revisión humana con confirmación activa. Puntos de
+auditoría encadenada, revisión humana con confirmación activa y, como
+demostración opcional, CDS Hooks y escritura en HAPI FHIR R4. Puntos de
 extensión que quedan pendientes (fuera del alcance de este prototipo):
 
 - Entrenar/usar un modelo de embeddings clínicos en español fijo y propio

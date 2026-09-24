@@ -7,7 +7,14 @@
     "cell": "C0",
     "descripcion": "Linea base de reglas (arbol de decision congelado, sin RAG)",
     "n_eligible_cases": 66,
+    "cobertura": 1.0,
     "S_sub_triage": 0.3939393939393939,
+    "S_sub_triage_ci": {
+      "estimate": 0.3939393939393939,
+      "ci_low": 0.24242424242424243,
+      "ci_high": 0.5606060606060606,
+      "n_boot": 2000
+    },
     "S_por_nivel": {
       "1": 0.8888888888888888,
       "2": 0.6666666666666666,
@@ -16,17 +23,29 @@
       "5": 0.0
     },
     "sensibilidad_I_II": 0.45454545454545453,
-    "fidelidad_citacion": 0.22727272727272727
+    "sensibilidad_I_II_ci": {
+      "estimate": 0.45454545454545453,
+      "ci_low": 0.2727272727272727,
+      "ci_high": 0.6060606060606061,
+      "n_boot": 2000
+    },
+    "fidelidad_citacion": 0.22727272727272727,
+    "sobre_triage": 0.2727272727272727,
+    "acuerdo_exacto": 0.5303030303030303
   },
   "celdas": [
     {
       "cell": "E1",
-      "corpus_format": "raw",
-      "embedding_mode": "generic",
       "n_eligible_cases": 66,
       "n_abstained_among_eligible": 35,
       "cobertura": 0.4696969696969697,
       "S_sub_triage": 0.25806451612903225,
+      "S_sub_triage_ci": {
+        "estimate": 0.25806451612903225,
+        "ci_low": 0.0967741935483871,
+        "ci_high": 0.41935483870967744,
+        "n_boot": 2000
+      },
       "S_por_nivel": {
         "1": 0.08333333333333333,
         "2": 0.6,
@@ -34,20 +53,1242 @@
         "4": 0.5,
         "5": 0.0
       },
+      "S_pareado_vs_C0": {
+        "n": 31,
+        "S_celda": 0.25806451612903225,
+        "S_C0": 0.5161290322580645
+      },
       "sensibilidad_I_II": 0.48484848484848486,
+      "sensibilidad_I_II_ci": {
+        "estimate": 0.48484848484848486,
+        "ci_low": 0.30303030303030304,
+        "ci_high": 0.6666666666666666,
+        "n_boot": 2000
+      },
+      "mcnemar_sens_I_II_vs_C0": {
+        "solo_celda_acierta": 6,
+        "solo_C0_acierta": 5,
+        "p_value": 1.0
+      },
+      "recall_at_1": 0.25757575757575757,
       "recall_at_k": 0.5,
+      "recall_at_k_ci": {
+        "estimate": 0.5,
+        "ci_low": 0.3787878787878788,
+        "ci_high": 0.6212121212121212,
+        "n_boot": 2000
+      },
+      "mrr": 0.353030303030303,
       "fidelidad_citacion": 0.3870967741935484,
       "tasa_abstencion_correcta": 0.5,
-      "tasa_abstencion_indebida": 0.5303030303030303
+      "tasa_abstencion_indebida": 0.5303030303030303,
+      "sobre_triage": 0.25806451612903225,
+      "acuerdo_exacto": 0.5806451612903226,
+      "tasa_modo_degradado": 0.0,
+      "n_escalados": 40,
+      "completitud_registro": 1.0,
+      "cadena_auditoria_valida": true,
+      "corpus_format": "raw",
+      "embedding_mode": "generic",
+      "predicciones": [
+        {
+          "case_id": "C001",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N4",
+            "RES5596-N3",
+            "RES5596-N2",
+            "RES5596-N5"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C002",
+          "level": 1,
+          "citation": "ALARMA-RAW-16",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C003",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C004",
+          "level": 1,
+          "citation": "ALARMA-RAW-4",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C005",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N4",
+            "RES5596-N3",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C006",
+          "level": 1,
+          "citation": "ALARMA-RAW-16",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N3",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C007",
+          "level": 1,
+          "citation": "ALARMA-RAW-24",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C008",
+          "level": 1,
+          "citation": "ALARMA-RAW-24",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N4",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C009",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C010",
+          "level": 1,
+          "citation": "ALARMA-RAW-24",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2",
+            "RES5596-N3",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C011",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C012",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N4",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C013",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "RES5596-N3",
+            "RES5596-N4",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C014",
+          "level": 1,
+          "citation": "ALARMA-RAW-16",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C015",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C016",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-FIEBRE-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C017",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C018",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C019",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N4",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C020",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N4",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C021",
+          "level": 1,
+          "citation": "ALARMA-RAW-24",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C022",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C023",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C024",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C025",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C026",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N4",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N5"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C027",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C028",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C029",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C030",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "RES5596-N5",
+            "RES5596-N3",
+            "RES5596-N4",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C035",
+          "level": 1,
+          "citation": "ALARMA-RAW-12",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C036",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C037",
+          "level": 1,
+          "citation": "ALARMA-RAW-14",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "RES5596-N2",
+            "ALARMA-QUEMADURA-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C038",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C039",
+          "level": 1,
+          "citation": "ALARMA-RAW-16",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2",
+            "RES5596-N3",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C040",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4",
+            "RES5596-N3",
+            "ALARMA-GESTANTE-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C041",
+          "level": 1,
+          "citation": "ALARMA-RAW-16",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C042",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C043",
+          "level": 1,
+          "citation": "ALARMA-RAW-20",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C044",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "RES5596-N4",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C045",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C046",
+          "level": 3,
+          "citation": "ALARMA-RAW-23",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C047",
+          "level": 1,
+          "citation": "ALARMA-RAW-12",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C048",
+          "level": 5,
+          "citation": "ALARMA-RAW-25",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "RES5596-N5",
+            "RES5596-N2",
+            "RES5596-N3",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C031",
+          "level": 1,
+          "citation": "ALARMA-RAW-10",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N4",
+            "RES5596-N2",
+            "RES5596-N5",
+            "RES5596-N1"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C032",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C033",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N5",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C034",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "RES5596-N4",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C049",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N4",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C050",
+          "level": 3,
+          "citation": "ALARMA-RAW-3",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "RES5596-N2",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C051",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C052",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N1",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C053",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C054",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "RES5596-N4",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C055",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C056",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N5",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C057",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C058",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C059",
+          "level": 1,
+          "citation": "ALARMA-RAW-12",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C060",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N3",
+            "ALARMA-FIEBRE-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C061",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C062",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-GESTANTE-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C063",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C064",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "RES5596-N2",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C065",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N2",
+            "RES5596-N4",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-SUICIDA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C066",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C067",
+          "level": 5,
+          "citation": "ALARMA-RAW-25",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C068",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C069",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N4",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N3",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C070",
+          "level": 5,
+          "citation": "ALARMA-RAW-25",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "RES5596-N5",
+            "RES5596-N3",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C071",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N4",
+            "RES5596-N3",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C072",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N5",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C073",
+          "level": 1,
+          "citation": "ALARMA-RAW-10",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C074",
+          "level": 1,
+          "citation": "ALARMA-RAW-10",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        }
+      ]
     },
     {
       "cell": "E2",
-      "corpus_format": "reformatted",
-      "embedding_mode": "generic",
       "n_eligible_cases": 66,
       "n_abstained_among_eligible": 39,
       "cobertura": 0.4090909090909091,
       "S_sub_triage": 0.07407407407407407,
+      "S_sub_triage_ci": {
+        "estimate": 0.07407407407407407,
+        "ci_low": 0.0,
+        "ci_high": 0.18518518518518517,
+        "n_boot": 2000
+      },
       "S_por_nivel": {
         "1": 0.0,
         "2": 0.6666666666666666,
@@ -55,20 +1296,1242 @@
         "4": 0.0,
         "5": 0.0
       },
+      "S_pareado_vs_C0": {
+        "n": 27,
+        "S_celda": 0.07407407407407407,
+        "S_C0": 0.3333333333333333
+      },
       "sensibilidad_I_II": 0.21212121212121213,
+      "sensibilidad_I_II_ci": {
+        "estimate": 0.21212121212121213,
+        "ci_low": 0.09090909090909091,
+        "ci_high": 0.36363636363636365,
+        "n_boot": 2000
+      },
+      "mcnemar_sens_I_II_vs_C0": {
+        "solo_celda_acierta": 4,
+        "solo_C0_acierta": 12,
+        "p_value": 0.076812744140625
+      },
+      "recall_at_1": 0.2878787878787879,
       "recall_at_k": 0.5606060606060606,
+      "recall_at_k_ci": {
+        "estimate": 0.5606060606060606,
+        "ci_low": 0.4393939393939394,
+        "ci_high": 0.6818181818181818,
+        "n_boot": 2000
+      },
+      "mrr": 0.3866161616161616,
       "fidelidad_citacion": 0.4074074074074074,
       "tasa_abstencion_correcta": 0.5,
-      "tasa_abstencion_indebida": 0.5909090909090909
+      "tasa_abstencion_indebida": 0.5909090909090909,
+      "sobre_triage": 0.5185185185185185,
+      "acuerdo_exacto": 0.7407407407407407,
+      "tasa_modo_degradado": 0.0,
+      "n_escalados": 43,
+      "completitud_registro": 1.0,
+      "cadena_auditoria_valida": true,
+      "corpus_format": "reformatted",
+      "embedding_mode": "generic",
+      "predicciones": [
+        {
+          "case_id": "C001",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N4",
+            "ALARMA-FIEBRE-LEVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C002",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C003",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C004",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C005",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C006",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C007",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C008",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C009",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C010",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2",
+            "RES5596-N3",
+            "ALARMA-FIEBRE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C011",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-SUICIDA-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C012",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C013",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "RES5596-N3",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C014",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "RES5596-N2",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C015",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C016",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "RES5596-N3",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C017",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C018",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C019",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C020",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C021",
+          "level": 1,
+          "citation": "ALARMA-GESTANTE-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-CONVULSION-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C022",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C023",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C024",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C025",
+          "level": 4,
+          "citation": "ALARMA-ALERGIA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C026",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C027",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C028",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C029",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C030",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C035",
+          "level": 1,
+          "citation": "ALARMA-ABDOMEN-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C036",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C037",
+          "level": 1,
+          "citation": "ALARMA-CONVULSION-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C038",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C039",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C040",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ALERGIA-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C041",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C042",
+          "level": 4,
+          "citation": "ALARMA-QUEMADURA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C043",
+          "level": 1,
+          "citation": "ALARMA-ALERGIA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C044",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C045",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C046",
+          "level": 3,
+          "citation": "ALARMA-INTOXICACION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C047",
+          "level": 1,
+          "citation": "ALARMA-ABDOMEN-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C048",
+          "level": 5,
+          "citation": "ALARMA-GESTANTE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "RES5596-N5",
+            "RES5596-N2",
+            "RES5596-N4",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C031",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N4",
+            "RES5596-N5"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C032",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C033",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N5",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C034",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "RES5596-N4",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C049",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C050",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C051",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C052",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N1"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C053",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C054",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C055",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C056",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N5",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C057",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C058",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C059",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C060",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-FIEBRE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C061",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N3",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C062",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C063",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-FIEBRE-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C064",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N5",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C065",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-LEVE",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C066",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C067",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C068",
+          "level": 3,
+          "citation": "ALARMA-DOLOR-TORACICO-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C069",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N4",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C070",
+          "level": 5,
+          "citation": "ALARMA-GESTANTE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "RES5596-N5",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-DIFRESP-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C071",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C072",
+          "level": 1,
+          "citation": "ALARMA-GESTANTE-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N5",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C073",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C074",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        }
+      ]
     },
     {
       "cell": "E3",
-      "corpus_format": "raw",
-      "embedding_mode": "clinical_es",
       "n_eligible_cases": 66,
       "n_abstained_among_eligible": 33,
       "cobertura": 0.5,
       "S_sub_triage": 0.21212121212121213,
+      "S_sub_triage_ci": {
+        "estimate": 0.21212121212121213,
+        "ci_low": 0.09090909090909091,
+        "ci_high": 0.36363636363636365,
+        "n_boot": 2000
+      },
       "S_por_nivel": {
         "1": 0.07692307692307693,
         "2": 0.625,
@@ -76,20 +2539,1242 @@
         "4": 0.2,
         "5": 0.0
       },
+      "S_pareado_vs_C0": {
+        "n": 33,
+        "S_celda": 0.21212121212121213,
+        "S_C0": 0.5454545454545454
+      },
       "sensibilidad_I_II": 0.48484848484848486,
+      "sensibilidad_I_II_ci": {
+        "estimate": 0.48484848484848486,
+        "ci_low": 0.30303030303030304,
+        "ci_high": 0.6666666666666666,
+        "n_boot": 2000
+      },
+      "mcnemar_sens_I_II_vs_C0": {
+        "solo_celda_acierta": 8,
+        "solo_C0_acierta": 7,
+        "p_value": 1.0
+      },
+      "recall_at_1": 0.3787878787878788,
       "recall_at_k": 0.6212121212121212,
+      "recall_at_k_ci": {
+        "estimate": 0.6212121212121212,
+        "ci_low": 0.5,
+        "ci_high": 0.7424242424242424,
+        "n_boot": 2000
+      },
+      "mrr": 0.46414141414141413,
       "fidelidad_citacion": 0.5454545454545454,
       "tasa_abstencion_correcta": 0.5,
-      "tasa_abstencion_indebida": 0.5
+      "tasa_abstencion_indebida": 0.5,
+      "sobre_triage": 0.21212121212121213,
+      "acuerdo_exacto": 0.6666666666666666,
+      "tasa_modo_degradado": 0.0,
+      "n_escalados": 38,
+      "completitud_registro": 1.0,
+      "cadena_auditoria_valida": true,
+      "corpus_format": "raw",
+      "embedding_mode": "clinical_es",
+      "predicciones": [
+        {
+          "case_id": "C001",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N1",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C002",
+          "level": 1,
+          "citation": "ALARMA-RAW-16",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C003",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C004",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C005",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C006",
+          "level": 1,
+          "citation": "ALARMA-RAW-16",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N3",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C007",
+          "level": 1,
+          "citation": "ALARMA-RAW-24",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C008",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C009",
+          "level": 1,
+          "citation": "ALARMA-RAW-20",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-ALERGIA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C010",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C011",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C012",
+          "level": 1,
+          "citation": "ALARMA-RAW-10",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C013",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "RES5596-N3",
+            "RES5596-N4",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C014",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N1",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C015",
+          "level": 3,
+          "citation": "ALARMA-RAW-1",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N4",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C016",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-FIEBRE-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C017",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C018",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C019",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N4",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C020",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N4",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C021",
+          "level": 1,
+          "citation": "ALARMA-RAW-24",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C022",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C023",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C024",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C025",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C026",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N4",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N5"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C027",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C028",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C029",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C030",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "RES5596-N5",
+            "RES5596-N3",
+            "RES5596-N4",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C035",
+          "level": 1,
+          "citation": "ALARMA-RAW-12",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C036",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C037",
+          "level": 1,
+          "citation": "ALARMA-RAW-14",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C038",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C039",
+          "level": 1,
+          "citation": "ALARMA-RAW-16",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-CEFALEA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C040",
+          "level": 4,
+          "citation": "ALARMA-RAW-17",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C041",
+          "level": 1,
+          "citation": "ALARMA-RAW-18",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C042",
+          "level": 4,
+          "citation": "ALARMA-RAW-19",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C043",
+          "level": 1,
+          "citation": "ALARMA-RAW-20",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C044",
+          "level": 4,
+          "citation": "ALARMA-RAW-21",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "RES5596-N4",
+            "RES5596-N3",
+            "RES5596-N2",
+            "ALARMA-FIEBRE-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C045",
+          "level": 1,
+          "citation": "ALARMA-RAW-22",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N1",
+            "RES5596-N2",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C046",
+          "level": 3,
+          "citation": "ALARMA-RAW-23",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N1",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C047",
+          "level": 1,
+          "citation": "ALARMA-RAW-24",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C048",
+          "level": 5,
+          "citation": "ALARMA-RAW-25",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N5",
+            "RES5596-N2",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C031",
+          "level": 1,
+          "citation": "ALARMA-RAW-10",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N4",
+            "RES5596-N2",
+            "RES5596-N5",
+            "RES5596-N1"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C032",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C033",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N5",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C034",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "RES5596-N4",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C049",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N4",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C050",
+          "level": 3,
+          "citation": "ALARMA-RAW-3",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "RES5596-N2",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C051",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C052",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N1",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C053",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C054",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C055",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C056",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N5",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C057",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C058",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C059",
+          "level": 1,
+          "citation": "ALARMA-RAW-12",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C060",
+          "level": 1,
+          "citation": "ALARMA-RAW-16",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N2",
+            "ALARMA-FIEBRE-GRAVE",
+            "RES5596-N3",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C061",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C062",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-GESTANTE-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C063",
+          "level": 3,
+          "citation": "ALARMA-RAW-15",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C064",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "RES5596-N2",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C065",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N2",
+            "RES5596-N4",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-SUICIDA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C066",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C067",
+          "level": 5,
+          "citation": "ALARMA-RAW-25",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C068",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C069",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N4",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N3",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C070",
+          "level": 5,
+          "citation": "ALARMA-RAW-25",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N5",
+            "RES5596-N3",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C071",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N4",
+            "RES5596-N3",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C072",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N5",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C073",
+          "level": 1,
+          "citation": "ALARMA-RAW-10",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C074",
+          "level": 1,
+          "citation": "ALARMA-RAW-10",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        }
+      ]
     },
     {
       "cell": "E4",
-      "corpus_format": "reformatted",
-      "embedding_mode": "clinical_es",
       "n_eligible_cases": 66,
       "n_abstained_among_eligible": 29,
       "cobertura": 0.5606060606060606,
       "S_sub_triage": 0.10810810810810811,
+      "S_sub_triage_ci": {
+        "estimate": 0.10810810810810811,
+        "ci_low": 0.0,
+        "ci_high": 0.24324324324324326,
+        "n_boot": 2000
+      },
       "S_por_nivel": {
         "1": 0.2,
         "2": 0.3333333333333333,
@@ -97,11 +3782,1229 @@
         "4": 0.0,
         "5": 0.0
       },
+      "S_pareado_vs_C0": {
+        "n": 37,
+        "S_celda": 0.10810810810810811,
+        "S_C0": 0.35135135135135137
+      },
       "sensibilidad_I_II": 0.3939393939393939,
+      "sensibilidad_I_II_ci": {
+        "estimate": 0.3939393939393939,
+        "ci_low": 0.24242424242424243,
+        "ci_high": 0.5454545454545454,
+        "n_boot": 2000
+      },
+      "mcnemar_sens_I_II_vs_C0": {
+        "solo_celda_acierta": 5,
+        "solo_C0_acierta": 7,
+        "p_value": 0.7744140625
+      },
+      "recall_at_1": 0.4090909090909091,
       "recall_at_k": 0.6666666666666666,
+      "recall_at_k_ci": {
+        "estimate": 0.6666666666666666,
+        "ci_low": 0.5606060606060606,
+        "ci_high": 0.7727272727272727,
+        "n_boot": 2000
+      },
+      "mrr": 0.49696969696969695,
       "fidelidad_citacion": 0.5405405405405406,
       "tasa_abstencion_correcta": 0.5,
-      "tasa_abstencion_indebida": 0.4393939393939394
+      "tasa_abstencion_indebida": 0.4393939393939394,
+      "sobre_triage": 0.4594594594594595,
+      "acuerdo_exacto": 0.7297297297297297,
+      "tasa_modo_degradado": 0.0,
+      "n_escalados": 33,
+      "completitud_registro": 1.0,
+      "cadena_auditoria_valida": true,
+      "corpus_format": "reformatted",
+      "embedding_mode": "clinical_es",
+      "predicciones": [
+        {
+          "case_id": "C001",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N1"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C002",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C003",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C004",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C005",
+          "level": 3,
+          "citation": "ALARMA-DIFRESP-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-ALERGIA-LEVE",
+            "RES5596-N2",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-ALERGIA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C006",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C007",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C008",
+          "level": 2,
+          "citation": "ALARMA-DOLOR-TORACICO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2",
+            "ALARMA-CONVULSION-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C009",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C010",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C011",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-SUICIDA-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C012",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N1",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C013",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "RES5596-N3",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C014",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N1"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C015",
+          "level": 3,
+          "citation": "ALARMA-DOLOR-TORACICO-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C016",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "RES5596-N3",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C017",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C018",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C019",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C020",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C021",
+          "level": 1,
+          "citation": "ALARMA-GESTANTE-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-CONVULSION-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C022",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C023",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C024",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C025",
+          "level": 4,
+          "citation": "ALARMA-ALERGIA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C026",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C027",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C028",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C029",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C030",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C035",
+          "level": 1,
+          "citation": "ALARMA-ABDOMEN-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C036",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C037",
+          "level": 1,
+          "citation": "ALARMA-CONVULSION-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N1"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C038",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C039",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-FIEBRE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C040",
+          "level": 4,
+          "citation": "ALARMA-CEFALEA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C041",
+          "level": 1,
+          "citation": "ALARMA-QUEMADURA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C042",
+          "level": 4,
+          "citation": "ALARMA-QUEMADURA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C043",
+          "level": 1,
+          "citation": "ALARMA-ALERGIA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C044",
+          "level": 4,
+          "citation": "ALARMA-ALERGIA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C045",
+          "level": 1,
+          "citation": "ALARMA-INTOXICACION-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "RES5596-N2",
+            "RES5596-N1"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C046",
+          "level": 3,
+          "citation": "ALARMA-INTOXICACION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C047",
+          "level": 1,
+          "citation": "ALARMA-GESTANTE-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C048",
+          "level": 5,
+          "citation": "ALARMA-GESTANTE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N5",
+            "RES5596-N2",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C031",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N4",
+            "RES5596-N5"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C032",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C033",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N5",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C034",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "RES5596-N4",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C049",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C050",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C051",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-SUICIDA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C052",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N1"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C053",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C054",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C055",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C056",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N5",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C057",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C058",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C059",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C060",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C061",
+          "level": 1,
+          "citation": "ALARMA-ABDOMEN-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N3",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C062",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C063",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-FIEBRE-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C064",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N3",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N5",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C065",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-LEVE",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C066",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C067",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C068",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C069",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N4",
+            "RES5596-N2"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": true
+        },
+        {
+          "case_id": "C070",
+          "level": 5,
+          "citation": "ALARMA-GESTANTE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N5",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C071",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4",
+            "RES5596-N3"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C072",
+          "level": 1,
+          "citation": "ALARMA-GESTANTE-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N5",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C073",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        },
+        {
+          "case_id": "C074",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "deterministic",
+          "degraded": false,
+          "escalated": false
+        }
+      ]
     }
   ]
 }

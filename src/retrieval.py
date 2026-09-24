@@ -13,11 +13,10 @@ del proyecto):
   modelo de *embeddings* clínico en español (p. ej. Carrino et al., 2022).
 
 Estas dos variantes son deterministas y no requieren red ni credenciales:
-siguen siendo el backend **por defecto**. Además, este módulo ofrece un
-tercer backend **opcional** (`GeminiRetriever`, más abajo) que usa
-*embeddings* reales de la API de Gemini en vez de TF-IDF, para quien tenga
-configurada una `GEMINI_API_KEY` y quiera mayor robustez semántica a costa de
-depender de una API externa (ver README.md, sección "Backend LLM opcional").
+son las del estudio de recuperación E1-E4 y la ruta de respaldo. Además, este
+módulo ofrece `GeminiRetriever` (más abajo), que usa *embeddings* reales de la
+API de Gemini, y es la parte densa de la ruta principal (ver README.md,
+sección "Arquitectura").
 """
 from __future__ import annotations
 
@@ -30,8 +29,9 @@ from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 
+from . import llm_client
 from .ingest import Chunk
-from .llm_client import embed_text
+from .llm_client import LLMUnavailableError, embed_text
 
 # Léxico de normalización coloquial -> clínico usado únicamente por la
 # variante ``clinical_es``. Las claves están ya normalizadas (minúsculas,
@@ -204,9 +204,9 @@ def _text_hash(text: str) -> str:
 
 
 class GeminiRetriever:
-    """Recuperación con *embeddings* reales de la API de Gemini
-    (`gemini-embedding-001`), en vez de TF-IDF. Backend opcional: requiere
-    `GEMINI_API_KEY` (ver README.md, sección "Backend LLM opcional").
+    """Recuperación densa con *embeddings* reales de la API de Gemini
+    (`gemini-embedding-001` por defecto), en vez de TF-IDF. Es la parte densa
+    de la ruta principal; requiere `GEMINI_API_KEY` o una caché completa.
 
     Usa la codificación **asimétrica** que ofrece `gemini-embedding-001`: los
     fragmentos del corpus se embeben con `task_type="RETRIEVAL_DOCUMENT"` y el
@@ -217,16 +217,16 @@ class GeminiRetriever:
     todo como consulta), es lo que la propia documentación de Gemini
     recomienda para tareas de recuperación y mejora la calidad del ranking.
 
-    Los embeddings de los fragmentos del corpus se cachean en disco
+    Los embeddings (de los fragmentos Y de las consultas) se cachean en disco
     (`cache_path`, por defecto `data/.gemini_embedding_cache.json`, excluido
-    de git) para no volver a llamar a la API por cada corrida: la key de
-    caché combina el `task_type` y un hash del texto exacto del fragmento,
-    así que un cambio en el corpus invalida automáticamente solo las
-    entradas afectadas.
+    de git). La clave combina el modelo, el `task_type` y un hash del texto
+    exacto, así que un cambio en el corpus o de modelo invalida solo las
+    entradas afectadas. La caché respeta `GEMINI_CACHE_MODE` (ver
+    `llm_client`): en `readonly` una entrada faltante lanza
+    `LLMUnavailableError` en lugar de llamar a la API, y en `off` no se lee
+    ni se escribe.
 
-    Implementa la misma interfaz que `Retriever` (`.retrieve(query, k)`) para
-    que `MinimalGenerator`/`LLMBackedGenerator` puedan usar cualquiera de los
-    dos sin distinción.
+    Implementa la misma interfaz que `Retriever` (`.retrieve(query, k)`).
     """
 
     def __init__(
@@ -234,9 +234,11 @@ class GeminiRetriever:
         chunks: list[Chunk],
         cache_path: Path = DEFAULT_EMBEDDING_CACHE_PATH,
         embed_fn=embed_text,
+        model: str | None = None,
     ):
         self.chunks = chunks
         self.cache_path = cache_path
+        self.model = model or llm_client.EMBEDDING_MODEL
         self._embed_fn = embed_fn
         self._cache = self._load_cache()
         self._doc_vectors = [
@@ -244,23 +246,39 @@ class GeminiRetriever:
         ]
 
     def _load_cache(self) -> dict[str, list[float]]:
-        if self.cache_path.exists():
-            return json.loads(self.cache_path.read_text(encoding="utf-8"))
-        return {}
+        if not self.cache_path.exists():
+            return {}
+        cache = json.loads(self.cache_path.read_text(encoding="utf-8"))
+        # Migración de la caché v1, cuyas claves no incluían el modelo
+        # ("TASK:hash"): todas se generaron con gemini-embedding-001.
+        migrated = {}
+        for key, vec in cache.items():
+            if key.count(":") == 1:
+                key = f"{llm_client.DEFAULT_EMBEDDING_MODEL}:{key}"
+            migrated[key] = vec
+        return migrated
 
     def _save_cache(self) -> None:
         self.cache_path.parent.mkdir(parents=True, exist_ok=True)
         self.cache_path.write_text(json.dumps(self._cache), encoding="utf-8")
 
     def _embed_cached(self, text: str, task_type: str) -> list[float]:
-        key = f"{task_type}:{_text_hash(text)}"
-        if key not in self._cache:
-            self._cache[key] = self._embed_fn(text, task_type=task_type)
+        mode = llm_client.get_cache_mode()
+        key = f"{self.model}:{task_type}:{_text_hash(text)}"
+        if mode != "off" and key in self._cache:
+            return self._cache[key]
+        if mode == "readonly":
+            raise LLMUnavailableError(
+                "GEMINI_CACHE_MODE=readonly y la caché de embeddings no tiene esta entrada."
+            )
+        vector = self._embed_fn(text, task_type=task_type)
+        if mode == "readwrite":
+            self._cache[key] = vector
             self._save_cache()
-        return self._cache[key]
+        return vector
 
     def retrieve(self, query: str, k: int = 5) -> list[RankedChunk]:
-        query_vec = self._embed_fn(query, task_type="RETRIEVAL_QUERY")
+        query_vec = self._embed_cached(query, "RETRIEVAL_QUERY")
         scored = [
             RankedChunk(chunk=chunk, score=_cosine_similarity(query_vec, doc_vec))
             for chunk, doc_vec in zip(self.chunks, self._doc_vectors)

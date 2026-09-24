@@ -48,7 +48,7 @@ export function ConsultaView() {
   const [texto, setTexto] = useState(EJEMPLOS[0])
   const [corpusFormat, setCorpusFormat] = useState<CorpusFormat>('reformatted')
   const [embeddingMode, setEmbeddingMode] = useState<EmbeddingMode>('clinical_es')
-  const [backend, setBackend] = useState<Backend>('deterministic')
+  const [backend, setBackend] = useState<Backend>('gemini')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [result, setResult] = useState<ConsultaResponse | null>(null)
@@ -124,8 +124,8 @@ export function ConsultaView() {
               value={backend}
               onChange={setBackend}
               options={[
+                { value: 'gemini', label: 'Gemini (ruta principal)' },
                 { value: 'deterministic', label: 'Determinista (sin red)' },
-                { value: 'gemini', label: 'Gemini (embeddings + LLM)' },
               ]}
             />
           </div>
@@ -133,7 +133,7 @@ export function ConsultaView() {
           {backend === 'gemini' && (
             <p className="text-xs text-slate-500">
               Requiere <code className="rounded bg-slate-800 px-1 py-0.5">GEMINI_API_KEY</code> en el
-              backend; si no está disponible, cae automáticamente al backend determinista.
+              backend; si no está disponible, se usa el respaldo determinista y la respuesta queda marcada como modo degradado.
             </p>
           )}
 
@@ -173,9 +173,9 @@ function ResultPanel({ result }: { result: ConsultaResponse }) {
             <Sparkles className="h-4 w-4 text-teal-400" />
             Sugerencia del copiloto
           </h3>
-          {backend_used === 'gemini_fallback_deterministic' && (
+          {backend_used === 'deterministic_fallback' && (
             <span className="rounded-full bg-amber-500/15 px-2.5 py-1 text-[11px] font-medium text-amber-300">
-              Gemini no disponible → determinista
+              Modo degradado: respaldo determinista
             </span>
           )}
         </div>

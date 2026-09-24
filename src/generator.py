@@ -47,6 +47,12 @@ class Suggestion:
     abstained: bool
     reason: str
     retrieved: list[RankedChunk] = field(default_factory=list)
+    # Ruta que produjo la sugerencia: "gemini" (ruta principal),
+    # "deterministic_fallback" (se pidió Gemini pero falló y se usó el
+    # respaldo) o "deterministic" (ruta determinista pedida explícitamente).
+    backend_used: str = "deterministic"
+    # True solo cuando se usó la ruta de respaldo en lugar de la principal.
+    degraded: bool = False
 
 
 class MinimalGenerator:

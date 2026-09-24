@@ -96,13 +96,13 @@ class ConsultaTab(ttk.Frame):
         ).grid(row=2, column=3, sticky="w")
 
         ttk.Label(self, text="Backend:").grid(row=3, column=0, sticky="e")
-        self.backend_var = tk.StringVar(value="deterministic")
+        self.backend_var = tk.StringVar(value="gemini")
         ttk.Combobox(
-            self, textvariable=self.backend_var, values=["deterministic", "gemini"],
+            self, textvariable=self.backend_var, values=["gemini", "deterministic"],
             state="readonly", width=15,
         ).grid(row=3, column=1, sticky="w")
         ttk.Label(
-            self, text="'gemini' requiere GEMINI_API_KEY (ver README); si falla, cae a 'deterministic'.",
+            self, text="'gemini' requiere GEMINI_API_KEY (ver README); si falla, usa el respaldo (modo degradado).",
             foreground="#555555", font=("TkDefaultFont", 8),
         ).grid(row=3, column=2, columnspan=2, sticky="w")
 
@@ -161,7 +161,7 @@ class ConsultaTab(ttk.Frame):
                 audit_path=audit_path,
             )
             suggestion = pipeline.run_case("gui", relato)
-            backend_used = pipeline.audit_log.read_all()[-1]["backend"]
+            backend_used = suggestion.backend_used
         finally:
             audit_path.unlink(missing_ok=True)
         baseline_result = self.baseline.classify(relato)
@@ -179,10 +179,10 @@ class ConsultaTab(ttk.Frame):
             f"| Backend usado={backend_used}",
             "-" * 70,
         ]
-        if backend_used == "gemini_fallback_deterministic":
+        if suggestion.degraded:
             lines.append(
-                "[Aviso: se pidió el backend 'gemini' pero no está disponible (revise "
-                "GEMINI_API_KEY o la conexión); se usó el backend determinista.]"
+                "[MODO DEGRADADO: se pidió la ruta 'gemini' pero no está disponible (revise "
+                "GEMINI_API_KEY o la conexión); se usó el respaldo determinista.]"
             )
         if suggestion.abstained:
             lines.append(f"Copiloto: SE ABSTIENE (razón: {suggestion.reason})")
@@ -242,12 +242,10 @@ class ExperimentoTab(ttk.Frame):
         `python -m experiments.run_experiment`, separado de `_on_click` para
         poder probarlo directamente."""
         cases = run_experiment.load_cases()
-        kappa = run_experiment.intra_team_kappa(cases)
-        baseline = run_experiment.run_baseline(cases)
-        cells = [
-            run_experiment.run_cell(name, fmt, mode, cases) for name, fmt, mode in run_experiment.CELLS
-        ]
-        return run_experiment.format_markdown(kappa, baseline, cells, n_total_cases=len(cases))
+        output = run_experiment.run_all(cases)
+        return run_experiment.format_markdown(
+            output["kappa_intra_equipo"], output["baseline_C0"], output["celdas"], n_total_cases=len(cases)
+        )
 
     def _on_result(self, result) -> None:
         self.boton.configure(state="normal")

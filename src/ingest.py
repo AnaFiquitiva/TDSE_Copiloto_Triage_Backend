@@ -9,6 +9,8 @@ en miniatura, el reto descrito en la Sección 3.3 del documento del proyecto
 """
 from __future__ import annotations
 
+import hashlib
+import json
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -197,6 +199,27 @@ def load_corpus(corpus_format: str) -> list[Chunk]:
         else:
             chunks.extend(_raw_chunks(path))
     return chunks
+
+
+def corpus_hash(corpus_format: str) -> str:
+    """SHA-256 del contenido canónico de los fragmentos de un corpus.
+
+    El contenido canónico es la lista de fragmentos ordenada por
+    ``chunk_id``, cada uno con su texto y su nivel, serializada como JSON con
+    llaves ordenadas. Así el hash cambia si cambia cualquier texto o nivel
+    citable, pero no por el orden de los archivos en disco ni por los saltos
+    de línea del sistema operativo (``read_text`` ya los normaliza a ``\n``).
+    Se registra en cada evento de auditoría para saber exactamente contra qué
+    versión del corpus se generó una sugerencia.
+    """
+    chunks = sorted(load_corpus(corpus_format), key=lambda c: c.chunk_id)
+    canonical = json.dumps(
+        [{"chunk_id": c.chunk_id, "text": c.text, "level": c.level} for c in chunks],
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 if __name__ == "__main__":

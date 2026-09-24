@@ -63,7 +63,7 @@ class ConsultaRequest(BaseModel):
     texto: str
     corpus_format: Literal["raw", "reformatted"] = "reformatted"
     embedding_mode: Literal["generic", "clinical_es"] = "clinical_es"
-    backend: Literal["deterministic", "gemini"] = "deterministic"
+    backend: Literal["gemini", "deterministic"] = "gemini"
 
 
 class RetrievedFragment(BaseModel):
@@ -116,7 +116,7 @@ def consulta(req: ConsultaRequest) -> ConsultaResponse:
         audit_path=DEFAULT_AUDIT_PATH,
     )
     suggestion = pipeline.run_case("web", texto)
-    backend_used = pipeline.audit_log.read_all()[-1]["backend"]
+    backend_used = suggestion.backend_used
     baseline_result = _baseline.classify(texto)
 
     return ConsultaResponse(
@@ -147,10 +147,15 @@ def experimento() -> dict:
     """Mismo cómputo que `python -m experiments.run_experiment`, en JSON
     crudo en vez de Markdown, para que el frontend pueda graficarlo."""
     cases = run_experiment.load_cases()
-    kappa = run_experiment.intra_team_kappa(cases)
-    baseline = run_experiment.run_baseline(cases)
-    cells = [run_experiment.run_cell(name, fmt, mode, cases) for name, fmt, mode in run_experiment.CELLS]
-    return {"kappa": kappa, "baseline": baseline, "cells": cells, "n_total_cases": len(cases)}
+    output = run_experiment.run_all(cases)
+    return run_experiment._nan_to_none(
+        {
+            "kappa": output["kappa_intra_equipo"],
+            "baseline": output["baseline_C0"],
+            "cells": output["celdas"],
+            "n_total_cases": len(cases),
+        }
+    )
 
 
 @app.get("/api/dataset")

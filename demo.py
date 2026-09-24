@@ -4,9 +4,12 @@ evidencia recuperada y su cita, tal como la veria el personal de salud en la
 interfaz minima de revision descrita en el documento del proyecto.
 
 Uso:
-    python demo.py "el paciente tiene dolor en el pecho y sudoracion fria"
-    python demo.py "el paciente tiene dolor en el pecho" --corpus raw --embeddings generic
-    python demo.py "el paciente tiene dolor en el pecho" --backend gemini  # requiere GEMINI_API_KEY
+    python demo.py "el paciente tiene dolor en el pecho y sudoracion fria"   # ruta principal Gemini
+    python demo.py "el paciente tiene dolor en el pecho" --backend deterministic --corpus raw --embeddings generic
+
+La ruta principal (Gemini) requiere GEMINI_API_KEY o una cache de respuestas;
+si no esta disponible, el caso se resuelve con el respaldo determinista y se
+marca como MODO DEGRADADO.
 """
 from __future__ import annotations
 
@@ -26,12 +29,12 @@ def main() -> None:
     )
     parser.add_argument(
         "--embeddings", choices=["generic", "clinical_es"], default="clinical_es",
-        help="Modo de vectorizacion (por defecto: clinical_es). Ignorado si --backend gemini.",
+        help="Modo de vectorizacion de la ruta determinista (por defecto: clinical_es).",
     )
     parser.add_argument(
-        "--backend", choices=["deterministic", "gemini"], default="deterministic",
-        help="'deterministic' (por defecto, sin red) o 'gemini' (embeddings + LLM reales, "
-        "requiere la variable de entorno GEMINI_API_KEY; ver README.md).",
+        "--backend", choices=["gemini", "deterministic"], default="gemini",
+        help="'gemini' (por defecto, ruta principal: embeddings + LLM, requiere GEMINI_API_KEY "
+        "o cache) o 'deterministic' (sin red); ver README.md.",
     )
     args = parser.parse_args()
 
@@ -48,8 +51,11 @@ def main() -> None:
     baseline = RuleBasedBaseline().classify(args.texto)
 
     print(f"Relato: {args.texto}")
-    print(f"Corpus={args.corpus} | Embeddings={args.embeddings} | Backend={args.backend}")
+    print(f"Corpus={args.corpus} | Embeddings={args.embeddings} | Backend={args.backend} "
+          f"| Ruta usada={suggestion.backend_used}")
     print("-" * 60)
+    if suggestion.degraded:
+        print("AVISO: MODO DEGRADADO -- Gemini no disponible, se uso el respaldo determinista.")
     if suggestion.abstained:
         print(f"Copiloto: SE ABSTIENE (razon: {suggestion.reason})")
     else:

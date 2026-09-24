@@ -308,6 +308,43 @@ actual) dio, sobre 74 casos: cobertura 0.56 → 0.91, S 0.108 → 0.017,
 sensibilidad I-II 0.394 → 0.848, recall@k 0.667 → 0.894. Las cifras de la
 configuración actual (híbrida + modelo fijo) se obtienen con las celdas E5-E6.
 
+## CDS Hooks y FHIR (opcional, demostración)
+
+Todo esto es opcional y está **desactivado por defecto** (`FHIR_ENABLED=false`):
+el resto del proyecto funciona igual sin ello.
+
+- **CDS Hooks** (`web/backend/cds.py`):
+  - Descubrimiento: `GET /cds-services`.
+  - Servicio: `POST /cds-services/triage-copiloto` (hook `encounter-start`).
+    El relato llega en `context.relato`, y opcionalmente `context.encounterId`.
+  - Responde una tarjeta con `summary`, `detail` (cita, texto del fragmento,
+    alarmas, aviso de modo degradado y el aviso fijo de responsabilidad) e
+    `indicator = critical` si el nivel es I-II o hay escalamiento; si no, `info`.
+  - La tarjeta es solo informativa: no propone acciones automáticas.
+- **FHIR R4** (`web/backend/fhir_client.py`, solo biblioteca estándar). Con
+  `FHIR_ENABLED=true`, cada decisión registrada en `/api/decision` se envía al
+  servidor como un Bundle `transaction` con tres recursos:
+  - un `Encounter` cuya `priority` es el nivel final;
+  - un `Provenance` que apunta al Encounter y referencia la cita normativa y el
+    hash del evento de auditoría;
+  - un `AuditEvent`.
+
+  Si el servidor no responde, la decisión se registra igual en la auditoría
+  local y la respuesta trae `fhir.ok = false`. Los sistemas de códigos
+  `urn:tdse:*` son locales del prototipo, no terminologías oficiales.
+
+```bash
+docker compose up --build                      # api :8000, web :3000, HAPI FHIR :8080 (FHIR desactivado)
+FHIR_ENABLED=true docker compose up --build    # (PowerShell: $env:FHIR_ENABLED="true"; docker compose up --build)
+```
+
+`docker-compose.yml` levanta `api`, `web` (nginx, que reenvía `/api` y
+`/cds-services`) y `fhir` (`hapiproject/hapi:v8.4.0-2`). La clave de Gemini se
+toma del entorno de la terminal; `.dockerignore` excluye `.env*` y las cachés,
+para que ninguna clave quede dentro de una imagen. El flujo
+consulta → decisión → Encounter/Provenance/AuditEvent en HAPI, y el caso con
+FHIR caído, se verificaron con los contenedores reales.
+
 ## Estructura del repositorio
 
 ```
@@ -316,6 +353,7 @@ corpus/
   reformatted/    Las mismas guías con citas explícitas (31 fragmentos)
 data/
   cases.json                 74 viñetas sintéticas con gold standard intra-equipo
+  revision_gold_standard.md  Revisión de las advertencias del validador (C003, C004, C006, C045, C058)
   cases_nuevos.template.json Plantilla VACÍA para casos nuevos del equipo (validación de alarmas v1)
   keyword_rules.json         Línea base C0, congelada (no se modifica)
   alarm_rules.json           Reglas de alarma v1 del guardarraíl (separadas de C0)
@@ -348,9 +386,10 @@ tests/            Pruebas (sin red y sin clave: Gemini siempre simulado o inyect
 demo.py           CLI de una consulta (ruta gemini por defecto; --backend deterministic)
 gui.py            Interfaz de escritorio (Tkinter)
 web/
-  backend/        API REST (FastAPI), ver "Interfaz web"
+  backend/        API REST (FastAPI) + cds.py (CDS Hooks) + fhir_client.py (FHIR R4 opcional)
   frontend/       Interfaz web (React + TypeScript + Vite + Tailwind + Recharts)
 requirements-embeddings.txt  Dependencia opcional del adaptador de embeddings locales
+docker-compose.yml           Demostración api + web + HAPI FHIR (ver "CDS Hooks y FHIR")
 ```
 
 ## Fuentes de datos reales

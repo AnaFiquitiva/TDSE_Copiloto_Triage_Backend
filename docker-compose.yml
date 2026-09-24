@@ -1,0 +1,46 @@
+# Demostracion local: API + interfaz web + servidor HAPI FHIR R4.
+#
+#   docker compose up --build                   # FHIR desactivado (por defecto)
+#   FHIR_ENABLED=true docker compose up --build # escribe cada decision en FHIR
+#
+# Interfaz: http://localhost:3000  | API: http://localhost:8000
+# FHIR:     http://localhost:8080/fhir
+#
+# La API funciona aunque el servidor FHIR no este disponible: la decision se
+# registra igual en la auditoria local y la respuesta indica fhir.ok = false.
+# GEMINI_API_KEY se toma del entorno de la terminal (nunca de un archivo del
+# repositorio); sin ella, la ruta principal usa el respaldo (modo degradado).
+services:
+  api:
+    build:
+      context: .
+      dockerfile: web/backend/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      FHIR_ENABLED: ${FHIR_ENABLED:-false}
+      FHIR_BASE_URL: http://fhir:8080/fhir
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_CACHE_MODE: ${GEMINI_CACHE_MODE:-readwrite}
+    volumes:
+      - ./results:/app/results
+      # data/ completo (incluye las caches de Gemini, excluidas de git y de la
+      # imagen). Se monta el directorio y no archivos sueltos: si una cache aun
+      # no existe, Docker crearia un directorio en su lugar.
+      - ./data:/app/data
+
+  web:
+    build:
+      context: .
+      dockerfile: web/frontend/Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - api
+
+  fhir:
+    image: hapiproject/hapi:v8.4.0-2
+    ports:
+      - "8080:8080"
+    environment:
+      hapi.fhir.fhir_version: R4

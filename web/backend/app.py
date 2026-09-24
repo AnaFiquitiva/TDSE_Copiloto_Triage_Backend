@@ -22,6 +22,9 @@ from typing import Literal, Optional
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT))
+# Módulos hermanos (cds.py, fhir_client.py), tanto con `uvicorn web.backend.app`
+# como importando `app` directamente desde las pruebas.
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from fastapi import FastAPI, HTTPException, Query  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
@@ -42,6 +45,9 @@ from src.audit import AuditLog, completeness  # noqa: E402
 from src.baseline import RuleBasedBaseline  # noqa: E402
 from src.ingest import load_corpus  # noqa: E402
 from src.pipeline import CopilotoPipeline  # noqa: E402
+
+import cds  # noqa: E402
+import fhir_client  # noqa: E402
 
 app = FastAPI(
     title="TDSE Copiloto de Triage RAG - API",
@@ -167,6 +173,7 @@ class DecisionResponse(BaseModel):
     action: str
     final_level: int
     suggested_level: Optional[int]
+    fhir: dict = Field(default_factory=lambda: {"enabled": False})
 
 
 @app.get("/api/health")
@@ -179,9 +186,12 @@ def consulta(req: ConsultaRequest) -> ConsultaResponse:
     texto = req.texto.strip()
     if not texto:
         raise HTTPException(status_code=400, detail="El relato no puede estar vacío.")
+    return _run_consulta(texto, req.corpus_format, req.embedding_mode, req.backend, case_id="web")
 
-    pipeline = _pipeline(req.corpus_format, req.embedding_mode, req.backend, str(DEFAULT_AUDIT_PATH))
-    suggestion = pipeline.run_case("web", texto)
+
+def _run_consulta(texto: str, corpus_format: str, embedding_mode: str, backend: str, case_id: str) -> ConsultaResponse:
+    pipeline = _pipeline(corpus_format, embedding_mode, backend, str(DEFAULT_AUDIT_PATH))
+    suggestion = pipeline.run_case(case_id, texto)
     record = pipeline.last_record
     baseline_result = _baseline.classify(texto)
 
@@ -217,9 +227,9 @@ def consulta(req: ConsultaRequest) -> ConsultaResponse:
         n_final=suggestion.n_final,
         model_citation=suggestion.model_citation,
         alarms=[
-            AlarmOut(**a, text=_fragment_text(a["citation"], req.corpus_format)) for a in suggestion.alarms
+            AlarmOut(**a, text=_fragment_text(a["citation"], corpus_format)) for a in suggestion.alarms
         ],
-        cited_fragment_text=_fragment_text(reference_citation, req.corpus_format),
+        cited_fragment_text=_fragment_text(reference_citation, corpus_format),
     )
 
 
@@ -241,13 +251,44 @@ def decision(req: DecisionRequest) -> DecisionResponse:
         raise HTTPException(status_code=404, detail="No existe una sugerencia con ese record_hash.")
     except ValueError as exc:
         raise HTTPException(status_code=422, detail=str(exc))
+    # Escritura opcional en FHIR R4 (FHIR_ENABLED=false por defecto). Nunca
+    # falla la petición: la auditoría local ya quedó registrada.
+    fhir = fhir_client.write_decision(log.find(req.record_hash), event)
     return DecisionResponse(
         event_hash=event["hash"],
         ref_hash=event["ref_hash"],
         action=event["action"],
         final_level=event["final_level"],
         suggested_level=event["suggested_level"],
+        fhir=fhir,
     )
+
+
+# --- CDS Hooks (https://cds-hooks.org) ---------------------------------------
+
+
+class CDSRequest(BaseModel):
+    hook: str = cds.HOOK
+    hookInstance: Optional[str] = None
+    context: dict
+
+
+@app.get("/cds-services")
+def cds_discovery() -> dict:
+    return cds.DISCOVERY
+
+
+@app.post(f"/cds-services/{cds.SERVICE_ID}")
+def cds_triage(req: CDSRequest) -> dict:
+    """Recibe el relato en ``context.relato`` y responde con una tarjeta.
+    Usa la ruta principal por defecto (con respaldo marcado) y deja el
+    evento en la misma auditoría que la API web."""
+    texto = str(req.context.get("relato") or "").strip()
+    if not texto:
+        raise HTTPException(status_code=400, detail="context.relato es obligatorio.")
+    case_id = str(req.context.get("encounterId") or "cds-hooks")
+    response = _run_consulta(texto, "reformatted", "clinical_es", "gemini", case_id=case_id)
+    return {"cards": [cds.build_card(response.model_dump())]}
 
 
 @app.get("/api/auditoria")

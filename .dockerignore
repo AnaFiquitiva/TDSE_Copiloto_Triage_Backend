@@ -1,0 +1,18 @@
+# Nunca meter secretos en una imagen: la clave se pasa como variable de
+# entorno en tiempo de ejecucion (docker-compose.yml), no en el build.
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Caches y registros locales: se montan como volumen, no se copian.
+data/.gemini_embedding_cache.json
+data/.llm_response_cache.json
+results/
+
+.git
+**/__pycache__
+**/*.pyc
+.pytest_cache
+web/frontend/node_modules
+web/frontend/dist

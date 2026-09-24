@@ -5597,6 +5597,25 @@
           "n_reglas": null
         }
       ]
+    },
+    {
+      "cell": "E5",
+      "corpus_format": "reformatted",
+      "embedding_mode": "rrf(bm25+gemini) + LLM",
+      "no_evaluada": "no evaluada (sin API ni caché)"
+    },
+    {
+      "cell": "E6",
+      "corpus_format": "reformatted",
+      "embedding_mode": "rrf(bm25+gemini) + LLM",
+      "no_evaluada": "no evaluada (sin API ni caché)"
     }
-  ]
+  ],
+  "comparaciones": null,
+  "modelos": {
+    "generation_model": "gemini-2.5-flash-lite",
+    "embedding_model": "gemini-embedding-001",
+    "prompt_version": "triage-selector-v1",
+    "alarm_rules_version": "alarmas-v1"
+  }
 }

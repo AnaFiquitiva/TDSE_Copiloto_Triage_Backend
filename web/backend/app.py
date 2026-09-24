@@ -147,7 +147,7 @@ def experimento() -> dict:
     """Mismo cómputo que `python -m experiments.run_experiment`, en JSON
     crudo en vez de Markdown, para que el frontend pueda graficarlo."""
     cases = run_experiment.load_cases()
-    output = run_experiment.run_all(cases)
+    output = run_experiment.run_all(cases, gemini_first_mode="readonly")
     return run_experiment._nan_to_none(
         {
             "kappa": output["kappa_intra_equipo"],

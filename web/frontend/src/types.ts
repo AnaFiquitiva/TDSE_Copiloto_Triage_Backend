@@ -35,20 +35,27 @@ export interface ConsultaResponse {
   disclaimer: string
 }
 
+// Las métricas pueden venir en null (NaN en Python: p. ej. sin casos I-II).
+// Una celda E5/E6 sin API ni caché trae solo `no_evaluada` con el motivo.
 export interface CellResult {
   cell: string
-  corpus_format: CorpusFormat
-  embedding_mode: EmbeddingMode
-  n_eligible_cases: number
-  n_abstained_among_eligible: number
-  cobertura: number
-  S_sub_triage: number
-  S_por_nivel: Record<string, number>
-  sensibilidad_I_II: number
-  recall_at_k: number
-  fidelidad_citacion: number
-  tasa_abstencion_correcta: number
-  tasa_abstencion_indebida: number
+  corpus_format: string
+  embedding_mode: string
+  no_evaluada?: string
+  n_eligible_cases?: number
+  n_abstained_among_eligible?: number
+  cobertura?: number | null
+  S_sub_triage?: number | null
+  S_por_nivel?: Record<string, number>
+  sensibilidad_I_II?: number | null
+  recall_at_1?: number | null
+  recall_at_k?: number | null
+  mrr?: number | null
+  fidelidad_citacion?: number | null
+  tasa_abstencion_correcta?: number | null
+  tasa_abstencion_indebida?: number | null
+  sobre_triage?: number | null
+  tasa_modo_degradado?: number | null
 }
 
 export interface BaselineCellResult {
@@ -59,6 +66,7 @@ export interface BaselineCellResult {
   S_por_nivel: Record<string, number>
   sensibilidad_I_II: number
   fidelidad_citacion: number
+  sobre_triage?: number | null
 }
 
 export interface KappaResult {

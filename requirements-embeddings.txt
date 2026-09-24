@@ -1,0 +1,5 @@
+# Dependencia OPCIONAL: solo para el adaptador de embeddings locales
+# (src/local_embeddings.py, modelo intfloat/multilingual-e5-small). El nucleo
+# (src/, experiments/) funciona sin ella con la biblioteca estandar, y la ruta
+# principal usa Gemini; este adaptador no se usa por defecto.
+sentence-transformers>=3.0

@@ -27,6 +27,9 @@ export function ExperimentoView() {
     load()
   }, [])
 
+  const evaluated = data ? data.cells.filter((c) => !c.no_evaluada) : []
+  const notEvaluated = data ? data.cells.filter((c) => c.no_evaluada) : []
+
   const chartData = data
     ? [
         {
@@ -35,7 +38,7 @@ export function ExperimentoView() {
           'Sensibilidad I-II': round(data.baseline.sensibilidad_I_II),
           'Recall@k': 0,
         },
-        ...data.cells.map((c) => ({
+        ...evaluated.map((c) => ({
           celda: c.cell,
           'S (sub-triage)': round(c.S_sub_triage),
           'Sensibilidad I-II': round(c.sensibilidad_I_II),
@@ -48,9 +51,9 @@ export function ExperimentoView() {
     <div className="mx-auto max-w-6xl">
       <div className="flex items-start justify-between gap-4">
         <SectionTitle
-          eyebrow="Diseño experimental 2x2"
-          title="Experimento E1–E4 + línea base C0"
-          description="Corre el mismo cómputo que `python -m experiments.run_experiment` sobre el gold standard de 74 viñetas, comparando formato de corpus (crudo/reformateado) y modo de embeddings (genérico/clínico ES) contra la línea base de reglas."
+          eyebrow="Diseño experimental"
+          title="Experimento E1–E6 + línea base C0"
+          description="Corre el mismo cómputo que `python -m experiments.run_experiment` sobre el gold standard: E1–E4 comparan formato de corpus y recuperación (ruta determinista, sin red); E5–E6 son la ruta principal Gemini sin y con guardarraíl, evaluadas solo desde la caché de respuestas (la interfaz nunca llama a la API)."
         />
         <button
           onClick={load}
@@ -62,7 +65,7 @@ export function ExperimentoView() {
         </button>
       </div>
 
-      {loading && <Spinner label="Ejecutando las 4 celdas + línea base sobre 74 casos..." />}
+      {loading && <Spinner label="Ejecutando las celdas + línea base sobre el gold standard..." />}
       {error && <ErrorBox message={error} />}
 
       {data && !loading && (
@@ -77,12 +80,12 @@ export function ExperimentoView() {
             />
             <StatCard
               label="Mejor S (menor es mejor)"
-              value={Math.min(...data.cells.map((c) => c.S_sub_triage)).toFixed(3)}
+              value={fmt(Math.min(...evaluated.map((c) => c.S_sub_triage ?? Infinity)))}
               accent="amber"
             />
             <StatCard
               label="Mejor sensibilidad I-II"
-              value={`${(Math.max(...data.cells.map((c) => c.sensibilidad_I_II)) * 100).toFixed(0)}%`}
+              value={`${(Math.max(...evaluated.map((c) => c.sensibilidad_I_II ?? 0)) * 100).toFixed(0)}%`}
               accent="red"
             />
           </div>
@@ -120,7 +123,7 @@ export function ExperimentoView() {
             <table className="w-full min-w-[720px] text-left text-xs">
               <thead>
                 <tr className="border-b border-slate-800 text-slate-500">
-                  {['Celda', 'Corpus', 'Embeddings', 'N', 'Cobertura', 'S', 'Sens. I-II', 'Recall@k', 'Fidelidad', 'Abst. correcta', 'Abst. indebida'].map(
+                  {['Celda', 'Corpus', 'Recuperación', 'N', 'Cobertura', 'S', 'Sens. I-II', 'Recall@1', 'Recall@k', 'MRR', 'Fidelidad', 'Abst. correcta', 'Abst. indebida', 'Sobre-triage', 'Degradado'].map(
                     (h) => (
                       <th key={h} className="whitespace-nowrap px-3 py-2 font-medium">
                         {h}
@@ -135,27 +138,45 @@ export function ExperimentoView() {
                   <td className="px-3 py-2">reglas</td>
                   <td className="px-3 py-2">—</td>
                   <td className="px-3 py-2">{data.baseline.n_eligible_cases}</td>
+                  <td className="px-3 py-2">1.00</td>
+                  <td className="px-3 py-2">{fmt(data.baseline.S_sub_triage)}</td>
+                  <td className="px-3 py-2">{fmt(data.baseline.sensibilidad_I_II)}</td>
                   <td className="px-3 py-2">—</td>
-                  <td className="px-3 py-2">{data.baseline.S_sub_triage.toFixed(3)}</td>
-                  <td className="px-3 py-2">{data.baseline.sensibilidad_I_II.toFixed(3)}</td>
                   <td className="px-3 py-2">—</td>
-                  <td className="px-3 py-2">{data.baseline.fidelidad_citacion.toFixed(3)}</td>
                   <td className="px-3 py-2">—</td>
+                  <td className="px-3 py-2">{fmt(data.baseline.fidelidad_citacion)}</td>
+                  <td className="px-3 py-2">—</td>
+                  <td className="px-3 py-2">—</td>
+                  <td className="px-3 py-2">{fmt(data.baseline.sobre_triage)}</td>
                   <td className="px-3 py-2">—</td>
                 </tr>
-                {data.cells.map((c) => (
+                {evaluated.map((c) => (
                   <tr key={c.cell} className="border-b border-slate-800/60 text-slate-400">
                     <td className="px-3 py-2 font-semibold text-teal-300">{c.cell}</td>
                     <td className="px-3 py-2">{c.corpus_format}</td>
                     <td className="px-3 py-2">{c.embedding_mode}</td>
                     <td className="px-3 py-2">{c.n_eligible_cases}</td>
-                    <td className="px-3 py-2">{c.cobertura.toFixed(2)}</td>
-                    <td className="px-3 py-2">{c.S_sub_triage.toFixed(3)}</td>
-                    <td className="px-3 py-2">{c.sensibilidad_I_II.toFixed(3)}</td>
-                    <td className="px-3 py-2">{c.recall_at_k.toFixed(3)}</td>
-                    <td className="px-3 py-2">{c.fidelidad_citacion.toFixed(3)}</td>
-                    <td className="px-3 py-2">{c.tasa_abstencion_correcta.toFixed(3)}</td>
-                    <td className="px-3 py-2">{c.tasa_abstencion_indebida.toFixed(3)}</td>
+                    <td className="px-3 py-2">{fmt(c.cobertura, 2)}</td>
+                    <td className="px-3 py-2">{fmt(c.S_sub_triage)}</td>
+                    <td className="px-3 py-2">{fmt(c.sensibilidad_I_II)}</td>
+                    <td className="px-3 py-2">{fmt(c.recall_at_1)}</td>
+                    <td className="px-3 py-2">{fmt(c.recall_at_k)}</td>
+                    <td className="px-3 py-2">{fmt(c.mrr)}</td>
+                    <td className="px-3 py-2">{fmt(c.fidelidad_citacion)}</td>
+                    <td className="px-3 py-2">{fmt(c.tasa_abstencion_correcta)}</td>
+                    <td className="px-3 py-2">{fmt(c.tasa_abstencion_indebida)}</td>
+                    <td className="px-3 py-2">{fmt(c.sobre_triage)}</td>
+                    <td className="px-3 py-2">{fmt(c.tasa_modo_degradado, 2)}</td>
+                  </tr>
+                ))}
+                {notEvaluated.map((c) => (
+                  <tr key={c.cell} className="border-b border-slate-800/60 text-slate-500">
+                    <td className="px-3 py-2 font-semibold text-slate-400">{c.cell}</td>
+                    <td className="px-3 py-2">{c.corpus_format}</td>
+                    <td className="px-3 py-2">{c.embedding_mode}</td>
+                    <td className="px-3 py-2 italic" colSpan={12}>
+                      {c.no_evaluada}
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -167,6 +188,10 @@ export function ExperimentoView() {
   )
 }
 
-function round(n: number): number {
-  return Math.round(n * 1000) / 1000
+function round(n: number | null | undefined): number {
+  return n == null ? 0 : Math.round(n * 1000) / 1000
+}
+
+function fmt(n: number | null | undefined, digits = 3): string {
+  return n == null || !Number.isFinite(n) ? 'n/d' : n.toFixed(digits)
 }

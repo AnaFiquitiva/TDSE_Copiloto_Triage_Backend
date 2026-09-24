@@ -46,12 +46,12 @@ class TestConsulta(unittest.TestCase):
 
 
 class TestExperimento(unittest.TestCase):
-    def test_returns_kappa_baseline_and_four_cells(self):
+    def test_returns_kappa_baseline_and_six_cells(self):
         resp = client.get("/api/experimento")
         self.assertEqual(resp.status_code, 200)
         body = resp.json()
         self.assertIn("kappa_ponderado_cuadratico", body["kappa"])
-        self.assertEqual(len(body["cells"]), 4)
+        self.assertEqual([c["cell"] for c in body["cells"]], ["E1", "E2", "E3", "E4", "E5", "E6"])
         self.assertGreaterEqual(body["n_total_cases"], 60)
 
 

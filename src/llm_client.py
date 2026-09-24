@@ -31,6 +31,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import time
 import urllib.error
 import urllib.request
@@ -88,6 +89,20 @@ def get_cache_mode() -> str:
     return mode
 
 
+MAX_RETRY_DELAY_SECONDS = 60.0
+_RETRY_DELAY_RE = re.compile(r'"retryDelay"\s*:\s*"(\d+(?:\.\d+)?)s"')
+
+
+def _retry_delay_seconds(body: str, default: float) -> float:
+    """Espera sugerida por la API en un 429 (campo ``RetryInfo.retryDelay``,
+    p. ej. ``"38s"``), acotada a ``MAX_RETRY_DELAY_SECONDS``. Respetarla evita
+    gastar los reintentos antes de que se libere la cuota por minuto."""
+    match = _RETRY_DELAY_RE.search(body)
+    if not match:
+        return default
+    return min(float(match.group(1)) + 1.0, MAX_RETRY_DELAY_SECONDS)
+
+
 def _post_json(url: str, payload: dict, api_key: str) -> dict:
     data = json.dumps(payload).encode("utf-8")
     request = urllib.request.Request(
@@ -99,6 +114,7 @@ def _post_json(url: str, payload: dict, api_key: str) -> dict:
 
     last_error: Exception | None = None
     for attempt in range(1, MAX_RETRIES + 1):
+        wait = RETRY_BACKOFF_SECONDS * attempt
         try:
             with urllib.request.urlopen(request, timeout=REQUEST_TIMEOUT_SECONDS) as resp:
                 return json.loads(resp.read().decode("utf-8"))
@@ -109,11 +125,13 @@ def _post_json(url: str, payload: dict, api_key: str) -> dict:
             )
             if exc.code not in RETRYABLE_STATUS_CODES or attempt == MAX_RETRIES:
                 raise last_error from exc
+            if exc.code == 429:
+                wait = _retry_delay_seconds(body, default=wait)
         except (urllib.error.URLError, TimeoutError) as exc:
             last_error = LLMUnavailableError(f"Error de red llamando a Gemini: {exc}")
             if attempt == MAX_RETRIES:
                 raise last_error from exc
-        time.sleep(RETRY_BACKOFF_SECONDS * attempt)
+        time.sleep(wait)
 
     raise last_error or LLMUnavailableError("Fallo desconocido llamando a Gemini")
 

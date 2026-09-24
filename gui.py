@@ -8,7 +8,7 @@ del prototipo (no duplica lógica, solo la expone visualmente):
    recuperados con su score, y la sugerencia de la línea base C0 para
    comparar.
 2. **Experimento 2x2**: equivalente grafico de
-   `python -m experiments.run_experiment`. Corre las celdas E1-E4 + C0 sobre
+   `python -m experiments.run_experiment`. Corre las celdas E1-E6 + C0 sobre
    `data/cases.json` y muestra la tabla de resultados.
 3. **Dataset real**: equivalente grafico de
    `python -m experiments.analyze_external_data`. Corre el análisis del
@@ -211,7 +211,7 @@ class ExperimentoTab(ttk.Frame):
         super().__init__(master, padding=10)
         ttk.Label(
             self,
-            text="Ejecuta las celdas E1-E4 y la línea base C0 sobre data/cases.json "
+            text="Ejecuta las celdas E1-E6 (E5-E6 solo desde la caché) y la línea base C0 sobre data/cases.json "
             "(el mismo comando que `python -m experiments.run_experiment`).",
             wraplength=760,
         ).grid(row=0, column=0, sticky="w")
@@ -242,9 +242,14 @@ class ExperimentoTab(ttk.Frame):
         `python -m experiments.run_experiment`, separado de `_on_click` para
         poder probarlo directamente."""
         cases = run_experiment.load_cases()
-        output = run_experiment.run_all(cases)
+        output = run_experiment.run_all(cases, gemini_first_mode="readonly")
         return run_experiment.format_markdown(
-            output["kappa_intra_equipo"], output["baseline_C0"], output["celdas"], n_total_cases=len(cases)
+            output["kappa_intra_equipo"],
+            output["baseline_C0"],
+            output["celdas"],
+            n_total_cases=len(cases),
+            comparisons=output["comparaciones"],
+            models=output["modelos"],
         )
 
     def _on_result(self, result) -> None:

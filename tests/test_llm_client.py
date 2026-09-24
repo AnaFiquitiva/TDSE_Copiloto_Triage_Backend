@@ -181,6 +181,21 @@ class TestRetryBehavior(unittest.TestCase):
             result = llm_client.embed_text("texto", api_key="fake-key")
         self.assertEqual(result, [1.0])
 
+    def test_429_waits_for_retry_delay_suggested_by_api(self):
+        body = b'{"error": {"code": 429, "details": [{"retryDelay": "7s"}]}}'
+        error_429 = urllib.error.HTTPError(
+            url="http://x", code=429, msg="quota", hdrs=None, fp=MagicMock(read=lambda: body)
+        )
+        with patch(
+            "urllib.request.urlopen", side_effect=[error_429, _FakeResponse({"embedding": {"values": [1.0]}})]
+        ), patch("time.sleep") as mock_sleep:
+            llm_client.embed_text("texto", api_key="fake-key")
+        mock_sleep.assert_called_once_with(8.0)
+
+    def test_retry_delay_is_capped(self):
+        self.assertEqual(llm_client._retry_delay_seconds('"retryDelay": "600s"', default=2.0), 60.0)
+        self.assertEqual(llm_client._retry_delay_seconds("sin campo", default=2.0), 2.0)
+
     def test_non_retryable_status_raises_immediately(self):
         error_404 = urllib.error.HTTPError(
             url="http://x", code=404, msg="not found", hdrs=None, fp=MagicMock(read=lambda: b"{}")

@@ -239,6 +239,7 @@ class GeminiRetriever:
         self.chunks = chunks
         self.cache_path = cache_path
         self.model = model or llm_client.EMBEDDING_MODEL
+        self.name = self.model
         self._embed_fn = embed_fn
         self._cache = self._load_cache()
         self._doc_vectors = [
@@ -285,3 +286,109 @@ class GeminiRetriever:
         ]
         scored.sort(key=lambda rc: rc.score, reverse=True)
         return scored[:k]
+
+
+class BM25Retriever:
+    """BM25 (Okapi) léxico, solo con la biblioteca estándar. Reutiliza
+    ``tokenize`` (con el léxico clínico en modo ``clinical_es``). Es la parte
+    léxica de la ruta principal híbrida: aporta coincidencia exacta de
+    términos clínicos que un modelo denso puede diluir.
+
+    IDF con la variante no negativa de Lucene:
+    ``log(1 + (N - df + 0.5) / (df + 0.5))``.
+    """
+
+    name = "bm25"
+
+    def __init__(self, chunks: list[Chunk], embedding_mode: str = "clinical_es", k1: float = 1.5, b: float = 0.75):
+        if embedding_mode not in {"generic", "clinical_es"}:
+            raise ValueError("embedding_mode debe ser 'generic' o 'clinical_es'")
+        self.chunks = chunks
+        self.embedding_mode = embedding_mode
+        self.k1 = k1
+        self.b = b
+        self.name = f"bm25-{embedding_mode}"
+        self._doc_tf = [Counter(tokenize(c.text, embedding_mode)) for c in chunks]
+        self._doc_len = [sum(tf.values()) for tf in self._doc_tf]
+        self._avgdl = (sum(self._doc_len) / len(chunks)) if chunks else 0.0
+        df: Counter = Counter()
+        for tf in self._doc_tf:
+            df.update(tf.keys())
+        n = len(chunks)
+        self._idf = {term: math.log(1 + (n - d + 0.5) / (d + 0.5)) for term, d in df.items()}
+
+    def _score(self, query_terms: list[str], i: int) -> float:
+        tf = self._doc_tf[i]
+        norm = self.k1 * (1 - self.b + self.b * self._doc_len[i] / (self._avgdl or 1.0))
+        score = 0.0
+        for term in query_terms:
+            f = tf.get(term, 0)
+            if f:
+                score += self._idf[term] * f * (self.k1 + 1) / (f + norm)
+        return score
+
+    def retrieve(self, query: str, k: int = 5) -> list[RankedChunk]:
+        # Términos únicos de la consulta: repetir una palabra en el relato no
+        # debe multiplicar su peso.
+        terms = list(dict.fromkeys(tokenize(query, self.embedding_mode)))
+        scored = [RankedChunk(chunk=c, score=self._score(terms, i)) for i, c in enumerate(self.chunks)]
+        scored.sort(key=lambda rc: rc.score, reverse=True)
+        return scored[:k]
+
+
+class DenseRetriever:
+    """Adaptador genérico de recuperación densa para CUALQUIER función de
+    embeddings ``embed_fn(texts, is_query) -> list[vector]`` (puerto de la
+    arquitectura). Permite enchufar un modelo local (``src/local_embeddings``)
+    o embeddings falsos en pruebas, sin tocar el resto del pipeline."""
+
+    def __init__(self, chunks: list[Chunk], embed_fn, name: str = "dense"):
+        self.chunks = chunks
+        self.name = name
+        self._embed_fn = embed_fn
+        self._doc_vectors = embed_fn([c.text for c in chunks], False) if chunks else []
+
+    def retrieve(self, query: str, k: int = 5) -> list[RankedChunk]:
+        query_vec = self._embed_fn([query], True)[0]
+        scored = [
+            RankedChunk(chunk=c, score=_cosine_similarity(query_vec, v))
+            for c, v in zip(self.chunks, self._doc_vectors)
+        ]
+        scored.sort(key=lambda rc: rc.score, reverse=True)
+        return scored[:k]
+
+
+class HybridRetriever:
+    """Fusión de varios recuperadores por Reciprocal Rank Fusion (Cormack et
+    al., 2009): ``score(d) = Σ_r 1 / (rrf_k + rank_r(d))``, con ``rank``
+    1-indexado dentro de los ``pool`` primeros resultados de cada
+    recuperador. Devuelve ``RankedChunk`` con el puntaje fusionado (que NO es
+    una similitud: su escala es ~1/rrf_k).
+
+    Si un recuperador lanza ``LLMUnavailableError`` (p. ej. Gemini sin red),
+    el error se propaga a propósito: el pipeline cae entonces a la ruta de
+    respaldo completa y lo marca como degradado, en vez de seguir en silencio
+    con solo la mitad léxica de la ruta principal.
+    """
+
+    def __init__(self, retrievers: list, rrf_k: int = 60, pool: int = 20):
+        if not retrievers:
+            raise ValueError("HybridRetriever necesita al menos un recuperador")
+        self.retrievers = retrievers
+        self.rrf_k = rrf_k
+        self.pool = pool
+        self.name = "rrf(" + "+".join(getattr(r, "name", type(r).__name__) for r in retrievers) + ")"
+
+    def retrieve(self, query: str, k: int = 5) -> list[RankedChunk]:
+        fused: dict[str, float] = {}
+        chunk_by_id: dict[str, Chunk] = {}
+        first_seen: dict[str, int] = {}
+        for retriever in self.retrievers:
+            for rank, rc in enumerate(retriever.retrieve(query, k=self.pool), start=1):
+                cid = rc.chunk.chunk_id
+                chunk_by_id.setdefault(cid, rc.chunk)
+                first_seen.setdefault(cid, len(first_seen))
+                fused[cid] = fused.get(cid, 0.0) + 1.0 / (self.rrf_k + rank)
+        # Empates: se rompen por orden de primera aparición (determinista).
+        ordered = sorted(fused, key=lambda cid: (-fused[cid], first_seen[cid]))
+        return [RankedChunk(chunk=chunk_by_id[cid], score=fused[cid]) for cid in ordered[:k]]

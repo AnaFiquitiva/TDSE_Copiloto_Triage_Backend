@@ -31,7 +31,7 @@ from .guardrail import apply_guardrail, finalize_without_guardrail
 from .ingest import Chunk, corpus_hash, load_corpus
 from .llm_client import LLMUnavailableError
 from .llm_generator import PROMPT_VERSION, LLMBackedGenerator
-from .retrieval import GeminiRetriever, Retriever
+from .retrieval import BM25Retriever, GeminiRetriever, HybridRetriever, Retriever
 
 DEFAULT_AUDIT_PATH = Path(__file__).resolve().parent.parent / "results" / "audit_log.jsonl"
 
@@ -58,8 +58,11 @@ def build_generator(corpus_format: str, embedding_mode: str, k: int = 5) -> Mini
 
 
 def build_llm_generator(corpus_format: str, k: int = 5) -> LLMBackedGenerator:
+    """Ruta principal: recuperación híbrida BM25 (léxico clínico) + Gemini
+    (denso, asimétrico) fusionada por RRF, y LLM restringido a elegir una
+    cita entre los k candidatos fusionados."""
     chunks = list(_cached_corpus(corpus_format))
-    retriever = GeminiRetriever(chunks)
+    retriever = HybridRetriever([BM25Retriever(chunks, embedding_mode="clinical_es"), GeminiRetriever(chunks)])
     return LLMBackedGenerator(retriever, k=k)
 
 
@@ -133,7 +136,10 @@ class CopilotoPipeline:
 
         if suggestion.backend_used == BACKEND_GEMINI:
             generation_model = llm_client.GENERATION_MODEL
-            embedding_model = llm_client.EMBEDDING_MODEL
+            # Nombre del recuperador realmente usado, p. ej.
+            # "rrf(bm25-clinical_es+gemini-embedding-001)".
+            retriever = getattr(self._llm_generator, "retriever", None)
+            embedding_model = getattr(retriever, "name", None) or llm_client.EMBEDDING_MODEL
             prompt_version = PROMPT_VERSION
         else:
             generation_model = DETERMINISTIC_GENERATOR_VERSION

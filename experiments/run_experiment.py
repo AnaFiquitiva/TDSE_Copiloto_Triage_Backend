@@ -5,11 +5,17 @@ de ``data/cases.json``, y escribe los resultados en ``results/``.
 E1-E4 usan SIEMPRE la ruta determinista (``backend="deterministic"``) de forma
 explícita: el estudio de recuperación debe ser reproducible sin red ni clave.
 
+E5-E6 usan la ruta principal (Gemini): con ``GEMINI_API_KEY`` la primera
+repetición llena la caché (``readwrite``) y las otras dos la repiten sin red
+(``readonly``); sin clave ni caché quedan como "no evaluadas".
+
 Uso:
     python -m experiments.run_experiment
+    python -m experiments.run_experiment --cases data/cases_nuevos.json   # solo E6 + C0
 """
 from __future__ import annotations
 
+import argparse
 import json
 import math
 import os
@@ -26,6 +32,7 @@ try:
 except AttributeError:
     pass
 
+from experiments.validate_cases import format_report, load_case_file, validate_cases  # noqa: E402
 from src import llm_client, metrics  # noqa: E402
 from src.audit import completeness, verify_chain  # noqa: E402
 from src.baseline import RuleBasedBaseline  # noqa: E402
@@ -646,8 +653,52 @@ def models_info() -> dict:
     }
 
 
+def run_new_cases(path: Path) -> str:
+    """Evalúa SOLO E6 (y C0 como referencia) sobre un archivo de casos nuevos
+    escrito por el equipo, para validar las reglas de alarma v1 sin el sesgo a
+    posteriori de haberlas derivado de los fallos en los 74 casos originales.
+    Escribe ``results/summary_<archivo>.md`` y ``results/raw_results_<archivo>.json``."""
+    report = validate_cases(load_case_file(path), min_per_high_level=0)
+    if not report["valido"]:
+        raise SystemExit(format_report(path, report) + "\n\nCorrija los errores antes de evaluar.")
+    cases = load_case_file(path)
+    if not cases:
+        raise SystemExit(f"{path} no tiene casos: complete la plantilla con casos del equipo.")
+
+    baseline = run_baseline(cases)
+    c0 = baseline_levels(cases)
+    cells, _ = run_gemini_cells(cases, c0, cells_to_run=("E6",))
+    output = {"archivo_casos": str(path), "validacion": report, "baseline_C0": baseline, "celdas": cells,
+              "modelos": models_info()}
+    stem = Path(path).stem
+    (RESULTS_DIR / f"raw_results_{stem}.json").write_text(
+        json.dumps(_nan_to_none(output), indent=2, ensure_ascii=False), encoding="utf-8"
+    )
+    kappa = intra_team_kappa(cases)
+    md = format_markdown(kappa, baseline, cells, n_total_cases=len(cases), models=output["modelos"])
+    md = md.replace(
+        "# Resultados del diseño experimental",
+        f"# Validación de las reglas de alarma v1 sobre casos nuevos ({Path(path).name})\n\n#",
+        1,
+    )
+    (RESULTS_DIR / f"summary_{stem}.md").write_text(md, encoding="utf-8")
+    return md
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Arnés experimental E1-E6 + C0.")
+    parser.add_argument(
+        "--cases",
+        type=Path,
+        default=None,
+        help="Archivo de casos NUEVOS (p. ej. data/cases_nuevos.json): evalúa solo E6 y C0 sobre ellos.",
+    )
+    args = parser.parse_args()
     RESULTS_DIR.mkdir(exist_ok=True)
+    if args.cases is not None:
+        print(run_new_cases(args.cases))
+        return
+
     cases = load_cases()
     output = run_all(cases)
 

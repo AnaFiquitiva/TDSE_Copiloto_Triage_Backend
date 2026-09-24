@@ -1,17 +1,23 @@
-# Comparación de backends: determinista vs. Gemini
+# Comparación de rutas: determinista vs. Gemini
 
-Generado por `experiments/compare_backends.py` sobre las mismas 74 viñetas de `data/cases.json`, ambas con corpus `reformatted`, para aislar el efecto del backend de generación/recuperación.
+Generado por `experiments/compare_backends.py` sobre las 74 viñetas de `data/cases.json`, con corpus `reformatted`.
 
-Backend Gemini realmente usado por caso: {'gemini': 70, 'gemini_fallback_deterministic': 4} (si aparece 'gemini_fallback_deterministic', esos casos cayeron al backend determinista por falta de `GEMINI_API_KEY` o un error de red — no es un fallo del experimento, es la salvaguarda de robustez de `src/pipeline.py`).
+Ruta realmente usada al pedir Gemini, por caso: {'deterministic_fallback': 74}. Los casos que cayeron al respaldo (`deterministic_fallback`) se reportan en su propia columna y NO se mezclan con los de Gemini.
 
-| Métrica | Determinista (TF-IDF) | Gemini (embeddings + LLM) |
-|---|---|---|
-| Casos elegibles | 66 | 66 |
-| Cobertura (no abstención) | 0.56 | 0.91 |
-| S (sub-triage ponderado) | 0.108 | 0.017 |
-| Sensibilidad I-II | 0.394 | 0.848 |
-| Recall@k | 0.667 | 0.894 |
-| Tasa de abstención correcta | 0.500 | 1.000 |
-| Tasa de abstención indebida | 0.439 | 0.091 |
+| Métrica | Gemini (casos que respondió) | Determinista (mismos casos) | Determinista (todos) | Respaldo (casos degradados) |
+|---|---|---|---|---|
+| Casos | — | — | 74 | 74 |
+| Casos elegibles | — | — | 66 | 66 |
+| Cobertura | — | — | 0.56 | 0.56 |
+| S (sub-triage ponderado) | — | — | 0.027 | 0.027 |
+| Sensibilidad I-II | — | — | 0.455 | 0.455 |
+| Recall@1 | — | — | 0.409 | 0.409 |
+| Recall@k | — | — | 0.667 | 0.667 |
+| MRR | — | — | 0.497 | 0.497 |
+| Sobre-triage | — | — | 0.459 | 0.459 |
+| Abstención correcta | — | — | 0.500 | 0.500 |
+| Abstención indebida | — | — | 0.439 | 0.439 |
 
-Con solo 74 casos esta comparación es ilustrativa, no concluyente estadísticamente (igual que en `run_experiment.py`); su valor es mostrar que el backend Gemini es un reemplazo funcional del determinista bajo la misma interfaz y las mismas métricas, no declarar un ganador definitivo.
+**Gemini no respondió ningún caso** (sin `GEMINI_API_KEY` ni caché de respuestas): no hay comparación que reportar.
+
+Con 74 casos esta comparación es ilustrativa, no concluyente estadísticamente.

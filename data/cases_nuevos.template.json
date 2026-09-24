@@ -1,0 +1,17 @@
+{
+  "_nota": "PLANTILLA VACIA. Copiar a data/cases_nuevos.json y completar con casos NUEVOS, redactados y etiquetados por el equipo (doble ciego) DESPUES de congelar data/alarm_rules.json (alarmas-v1), para validar las reglas de alarma sin sesgo a posteriori. Mismo esquema que data/cases.json. Validar con: python -m experiments.validate_cases data/cases_nuevos.json --min-por-nivel 0. Evaluar E6 con: python -m experiments.run_experiment --cases data/cases_nuevos.json. El campo '_esquema' documenta cada campo y se ignora al cargar; la lista 'cases' debe quedar solo con casos reales del equipo.",
+  "_esquema": {
+    "case_id": "Identificador unico, p. ej. N001 (no reutilizar ids de data/cases.json)",
+    "text": "Relato libre del paciente, en espanol, sin datos reales de pacientes",
+    "evaluator1": {"level": "1-5 o null", "citation": "id existente en LEVEL_BY_CITATION (src/ingest.py) o null"},
+    "evaluator2": {"level": "1-5 o null", "citation": "id existente en LEVEL_BY_CITATION o null"},
+    "evaluator3": "(solo si resolution_method = desempate_tercer_integrante) {level, citation}",
+    "resolution_method": "acuerdo_inicial | consenso_tras_discusion | desempate_tercer_integrante | ambiguo | no_aplica_caso_de_abstencion",
+    "nota_resolucion": "(recomendado en consenso y ambiguos) como se resolvio la discrepancia",
+    "final_level": "1-5, o null si ambiguous o should_abstain",
+    "final_citation": "cita cuyo nivel en LEVEL_BY_CITATION es final_level, o null",
+    "ambiguous": "true/false",
+    "should_abstain": "true/false"
+  },
+  "cases": []
+}

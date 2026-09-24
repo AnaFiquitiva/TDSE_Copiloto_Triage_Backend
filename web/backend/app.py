@@ -57,8 +57,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Registro v2 (hash encadenado). No reutiliza results/audit_web.jsonl, que en
-# instalaciones previas contiene eventos v1 sin hash y rompería la cadena.
+# Registro v2 (hash encadenado) de la API web.
 DEFAULT_AUDIT_PATH = ROOT / "results" / "audit_web_v2.jsonl"
 _baseline = RuleBasedBaseline()
 

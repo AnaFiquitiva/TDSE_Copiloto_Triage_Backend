@@ -17,7 +17,6 @@ data/.gemini_embedding_cache.json
 # Registro de auditoria generado al usar la API web (web/backend/app.py)
 # durante desarrollo local; se regenera en cada corrida, igual que
 # results/audit_log.jsonl del uso interactivo de demo.py/gui.py.
-results/audit_web.jsonl
 results/audit_web_v2.jsonl
 
 # Cache de respuestas del LLM (GEMINI_CACHE_MODE, ver README.md): se

@@ -84,7 +84,9 @@ def collect_predictions(pipeline: CopilotoPipeline, cases: list[dict]) -> list[d
                 "retrieved_ids": [canonical_citation(rc.chunk.chunk_id) for rc in s.retrieved],
                 "backend_used": s.backend_used,
                 "degraded": s.degraded,
-                "escalated": getattr(s, "escalated", s.abstained),
+                "escalated": s.escalated,
+                "n_modelo": s.n_modelo,
+                "n_reglas": s.n_reglas,
             }
         )
     return predictions
@@ -225,12 +227,19 @@ def run_cell(
     cases: list[dict],
     c0_levels: dict[str, int] | None = None,
 ) -> dict:
-    """Celda del estudio de recuperación E1-E4 (ruta determinista explícita)."""
+    """Celda del estudio de recuperación E1-E4: ruta determinista explícita y
+    sin guardarraíl, para aislar el efecto de corpus y recuperación (el efecto
+    del guardarraíl se mide aparte, E6 frente a E5)."""
     audit_path = RESULTS_DIR / f"audit_{cell_name}.jsonl"
     if audit_path.exists():
         audit_path.unlink()
     pipeline = CopilotoPipeline(
-        corpus_format, embedding_mode, k=5, audit_path=audit_path, backend="deterministic"
+        corpus_format,
+        embedding_mode,
+        k=5,
+        audit_path=audit_path,
+        backend="deterministic",
+        use_guardrail=False,
     )
     predictions = collect_predictions(pipeline, cases)
     c0_levels = c0_levels if c0_levels is not None else baseline_levels(cases)

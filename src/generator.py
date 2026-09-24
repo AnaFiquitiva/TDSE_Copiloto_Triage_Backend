@@ -53,6 +53,15 @@ class Suggestion:
     backend_used: str = "deterministic"
     # True solo cuando se usó la ruta de respaldo en lugar de la principal.
     degraded: bool = False
+    # Campos del guardarraíl (src/guardrail.py). Tras aplicarlo, `level` y
+    # `citation` son los FINALES (n_final y su cita); la cita original del
+    # modelo queda en `model_citation`.
+    n_modelo: int | None = None
+    n_reglas: int | None = None
+    n_final: int | None = None
+    escalated: bool = False
+    model_citation: str | None = None
+    alarms: list[dict] = field(default_factory=list)
 
 
 class MinimalGenerator:

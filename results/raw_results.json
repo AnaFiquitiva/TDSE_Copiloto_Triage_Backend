@@ -105,7 +105,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C002",
@@ -121,7 +123,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C003",
@@ -137,7 +141,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C004",
@@ -153,7 +159,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C005",
@@ -169,7 +177,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
         },
         {
           "case_id": "C006",
@@ -185,7 +195,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C007",
@@ -201,7 +213,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C008",
@@ -217,7 +231,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C009",
@@ -233,7 +249,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C010",
@@ -249,7 +267,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C011",
@@ -265,7 +285,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C012",
@@ -281,7 +303,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C013",
@@ -297,7 +321,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
         },
         {
           "case_id": "C014",
@@ -313,7 +339,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C015",
@@ -329,7 +357,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C016",
@@ -345,7 +375,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C017",
@@ -361,7 +393,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C018",
@@ -377,7 +411,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C019",
@@ -393,7 +429,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C020",
@@ -409,7 +447,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C021",
@@ -425,7 +465,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C022",
@@ -441,7 +483,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C023",
@@ -457,7 +501,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C024",
@@ -473,7 +519,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C025",
@@ -489,7 +537,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C026",
@@ -505,7 +555,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C027",
@@ -521,7 +573,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C028",
@@ -537,7 +591,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C029",
@@ -553,7 +609,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C030",
@@ -569,7 +627,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C035",
@@ -585,7 +645,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C036",
@@ -601,7 +663,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C037",
@@ -617,7 +681,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C038",
@@ -633,7 +699,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C039",
@@ -649,7 +717,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C040",
@@ -665,7 +735,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C041",
@@ -681,7 +753,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C042",
@@ -697,7 +771,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C043",
@@ -713,7 +789,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C044",
@@ -729,7 +807,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C045",
@@ -745,7 +825,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C046",
@@ -761,7 +843,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C047",
@@ -777,7 +861,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C048",
@@ -793,7 +879,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C031",
@@ -809,7 +897,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C032",
@@ -825,7 +915,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C033",
@@ -841,7 +933,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C034",
@@ -857,7 +951,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C049",
@@ -873,7 +969,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C050",
@@ -889,7 +987,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C051",
@@ -905,7 +1005,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C052",
@@ -921,7 +1023,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C053",
@@ -937,7 +1041,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C054",
@@ -953,7 +1059,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C055",
@@ -969,7 +1077,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C056",
@@ -985,7 +1095,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C057",
@@ -1001,7 +1113,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C058",
@@ -1017,7 +1131,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C059",
@@ -1033,7 +1149,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C060",
@@ -1049,7 +1167,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C061",
@@ -1065,7 +1185,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C062",
@@ -1081,7 +1203,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C063",
@@ -1097,7 +1221,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C064",
@@ -1113,7 +1239,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C065",
@@ -1129,7 +1257,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C066",
@@ -1145,7 +1275,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C067",
@@ -1161,7 +1293,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C068",
@@ -1177,7 +1311,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C069",
@@ -1193,7 +1329,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C070",
@@ -1209,7 +1347,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C071",
@@ -1225,7 +1365,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C072",
@@ -1241,7 +1383,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C073",
@@ -1257,7 +1401,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C074",
@@ -1273,7 +1419,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         }
       ]
     },
@@ -1348,7 +1496,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C002",
@@ -1364,7 +1514,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C003",
@@ -1380,7 +1532,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C004",
@@ -1396,7 +1550,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C005",
@@ -1412,7 +1568,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C006",
@@ -1428,7 +1586,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C007",
@@ -1444,7 +1604,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C008",
@@ -1460,7 +1622,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C009",
@@ -1476,7 +1640,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C010",
@@ -1492,7 +1658,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C011",
@@ -1508,7 +1676,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C012",
@@ -1524,7 +1694,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C013",
@@ -1540,7 +1712,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
         },
         {
           "case_id": "C014",
@@ -1556,7 +1730,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C015",
@@ -1572,7 +1748,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C016",
@@ -1588,7 +1766,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C017",
@@ -1604,7 +1784,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C018",
@@ -1620,7 +1802,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C019",
@@ -1636,7 +1820,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C020",
@@ -1652,7 +1838,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C021",
@@ -1668,7 +1856,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C022",
@@ -1684,7 +1874,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C023",
@@ -1700,7 +1892,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C024",
@@ -1716,7 +1910,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C025",
@@ -1732,7 +1928,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C026",
@@ -1748,7 +1946,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C027",
@@ -1764,7 +1964,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C028",
@@ -1780,7 +1982,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C029",
@@ -1796,7 +2000,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C030",
@@ -1812,7 +2018,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C035",
@@ -1828,7 +2036,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C036",
@@ -1844,7 +2054,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C037",
@@ -1860,7 +2072,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C038",
@@ -1876,7 +2090,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C039",
@@ -1892,7 +2108,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C040",
@@ -1908,7 +2126,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C041",
@@ -1924,7 +2144,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C042",
@@ -1940,7 +2162,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C043",
@@ -1956,7 +2180,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C044",
@@ -1972,7 +2198,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C045",
@@ -1988,7 +2216,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C046",
@@ -2004,7 +2234,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C047",
@@ -2020,7 +2252,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C048",
@@ -2036,7 +2270,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C031",
@@ -2052,7 +2288,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C032",
@@ -2068,7 +2306,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C033",
@@ -2084,7 +2324,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C034",
@@ -2100,7 +2342,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C049",
@@ -2116,7 +2360,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C050",
@@ -2132,7 +2378,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C051",
@@ -2148,7 +2396,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C052",
@@ -2164,7 +2414,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C053",
@@ -2180,7 +2432,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C054",
@@ -2196,7 +2450,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C055",
@@ -2212,7 +2468,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C056",
@@ -2228,7 +2486,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C057",
@@ -2244,7 +2504,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C058",
@@ -2260,7 +2522,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C059",
@@ -2276,7 +2540,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C060",
@@ -2292,7 +2558,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C061",
@@ -2308,7 +2576,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C062",
@@ -2324,7 +2594,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C063",
@@ -2340,7 +2612,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C064",
@@ -2356,7 +2630,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C065",
@@ -2372,7 +2648,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C066",
@@ -2388,7 +2666,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C067",
@@ -2404,7 +2684,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C068",
@@ -2420,7 +2702,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C069",
@@ -2436,7 +2720,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C070",
@@ -2452,7 +2738,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C071",
@@ -2468,7 +2756,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C072",
@@ -2484,7 +2774,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C073",
@@ -2500,7 +2792,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C074",
@@ -2516,7 +2810,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         }
       ]
     },
@@ -2591,7 +2887,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C002",
@@ -2607,7 +2905,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C003",
@@ -2623,7 +2923,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C004",
@@ -2639,7 +2941,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C005",
@@ -2655,7 +2959,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
         },
         {
           "case_id": "C006",
@@ -2671,7 +2977,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C007",
@@ -2687,7 +2995,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C008",
@@ -2703,7 +3013,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C009",
@@ -2719,7 +3031,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C010",
@@ -2735,7 +3049,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C011",
@@ -2751,7 +3067,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C012",
@@ -2767,7 +3085,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C013",
@@ -2783,7 +3103,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
         },
         {
           "case_id": "C014",
@@ -2799,7 +3121,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C015",
@@ -2815,7 +3139,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C016",
@@ -2831,7 +3157,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C017",
@@ -2847,7 +3175,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C018",
@@ -2863,7 +3193,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C019",
@@ -2879,7 +3211,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C020",
@@ -2895,7 +3229,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C021",
@@ -2911,7 +3247,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C022",
@@ -2927,7 +3265,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C023",
@@ -2943,7 +3283,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C024",
@@ -2959,7 +3301,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C025",
@@ -2975,7 +3319,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C026",
@@ -2991,7 +3337,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C027",
@@ -3007,7 +3355,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C028",
@@ -3023,7 +3373,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C029",
@@ -3039,7 +3391,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C030",
@@ -3055,7 +3409,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C035",
@@ -3071,7 +3427,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C036",
@@ -3087,7 +3445,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C037",
@@ -3103,7 +3463,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C038",
@@ -3119,7 +3481,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C039",
@@ -3135,7 +3499,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C040",
@@ -3151,7 +3517,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C041",
@@ -3167,7 +3535,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C042",
@@ -3183,7 +3553,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C043",
@@ -3199,7 +3571,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C044",
@@ -3215,7 +3589,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C045",
@@ -3231,7 +3607,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C046",
@@ -3247,7 +3625,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C047",
@@ -3263,7 +3643,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C048",
@@ -3279,7 +3661,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C031",
@@ -3295,7 +3679,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C032",
@@ -3311,7 +3697,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C033",
@@ -3327,7 +3715,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C034",
@@ -3343,7 +3733,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C049",
@@ -3359,7 +3751,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C050",
@@ -3375,7 +3769,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C051",
@@ -3391,7 +3787,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C052",
@@ -3407,7 +3805,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C053",
@@ -3423,7 +3823,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C054",
@@ -3439,7 +3841,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C055",
@@ -3455,7 +3859,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C056",
@@ -3471,7 +3877,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C057",
@@ -3487,7 +3895,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C058",
@@ -3503,7 +3913,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C059",
@@ -3519,7 +3931,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C060",
@@ -3535,7 +3949,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C061",
@@ -3551,7 +3967,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C062",
@@ -3567,7 +3985,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C063",
@@ -3583,7 +4003,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C064",
@@ -3599,7 +4021,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C065",
@@ -3615,7 +4039,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C066",
@@ -3631,7 +4057,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C067",
@@ -3647,7 +4075,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C068",
@@ -3663,7 +4093,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C069",
@@ -3679,7 +4111,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C070",
@@ -3695,7 +4129,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C071",
@@ -3711,7 +4147,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C072",
@@ -3727,7 +4165,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C073",
@@ -3743,7 +4183,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C074",
@@ -3759,7 +4201,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         }
       ]
     },
@@ -3834,7 +4278,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C002",
@@ -3850,7 +4296,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C003",
@@ -3866,7 +4314,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C004",
@@ -3882,7 +4332,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C005",
@@ -3898,7 +4350,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C006",
@@ -3914,7 +4368,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C007",
@@ -3930,7 +4386,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C008",
@@ -3946,7 +4404,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
         },
         {
           "case_id": "C009",
@@ -3962,7 +4422,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C010",
@@ -3978,7 +4440,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C011",
@@ -3994,7 +4458,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C012",
@@ -4010,7 +4476,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C013",
@@ -4026,7 +4494,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
         },
         {
           "case_id": "C014",
@@ -4042,7 +4512,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C015",
@@ -4058,7 +4530,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C016",
@@ -4074,7 +4548,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C017",
@@ -4090,7 +4566,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C018",
@@ -4106,7 +4584,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C019",
@@ -4122,7 +4602,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C020",
@@ -4138,7 +4620,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C021",
@@ -4154,7 +4638,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C022",
@@ -4170,7 +4656,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C023",
@@ -4186,7 +4674,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C024",
@@ -4202,7 +4692,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C025",
@@ -4218,7 +4710,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C026",
@@ -4234,7 +4728,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C027",
@@ -4250,7 +4746,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C028",
@@ -4266,7 +4764,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C029",
@@ -4282,7 +4782,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C030",
@@ -4298,7 +4800,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C035",
@@ -4314,7 +4818,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C036",
@@ -4330,7 +4836,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C037",
@@ -4346,7 +4854,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C038",
@@ -4362,7 +4872,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C039",
@@ -4378,7 +4890,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C040",
@@ -4394,7 +4908,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C041",
@@ -4410,7 +4926,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C042",
@@ -4426,7 +4944,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C043",
@@ -4442,7 +4962,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C044",
@@ -4458,7 +4980,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C045",
@@ -4474,7 +4998,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C046",
@@ -4490,7 +5016,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C047",
@@ -4506,7 +5034,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C048",
@@ -4522,7 +5052,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C031",
@@ -4538,7 +5070,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C032",
@@ -4554,7 +5088,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C033",
@@ -4570,7 +5106,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C034",
@@ -4586,7 +5124,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C049",
@@ -4602,7 +5142,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C050",
@@ -4618,7 +5160,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C051",
@@ -4634,7 +5178,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C052",
@@ -4650,7 +5196,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C053",
@@ -4666,7 +5214,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C054",
@@ -4682,7 +5232,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C055",
@@ -4698,7 +5250,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C056",
@@ -4714,7 +5268,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C057",
@@ -4730,7 +5286,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C058",
@@ -4746,7 +5304,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C059",
@@ -4762,7 +5322,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C060",
@@ -4778,7 +5340,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C061",
@@ -4794,7 +5358,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C062",
@@ -4810,7 +5376,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C063",
@@ -4826,7 +5394,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
         },
         {
           "case_id": "C064",
@@ -4842,7 +5412,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C065",
@@ -4858,7 +5430,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C066",
@@ -4874,7 +5448,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C067",
@@ -4890,7 +5466,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
         },
         {
           "case_id": "C068",
@@ -4906,7 +5484,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C069",
@@ -4922,7 +5502,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": true
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
         },
         {
           "case_id": "C070",
@@ -4938,7 +5520,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
         },
         {
           "case_id": "C071",
@@ -4954,7 +5538,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C072",
@@ -4970,7 +5556,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C073",
@@ -4986,7 +5574,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         },
         {
           "case_id": "C074",
@@ -5002,7 +5592,9 @@
           ],
           "backend_used": "deterministic",
           "degraded": false,
-          "escalated": false
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
         }
       ]
     }

@@ -13,20 +13,21 @@ from src.audit import (
     verify_chain,
 )
 from src.generator import Suggestion
+from src.guardrail import finalize_without_guardrail
 from src.ingest import Chunk
 from src.retrieval import RankedChunk
 
 
 def _suggestion(level=2, abstained=False):
     chunk = Chunk("RES5596-N2", "texto", "niveles", "reformatted", level=2)
-    return Suggestion(
+    return finalize_without_guardrail(Suggestion(
         level=None if abstained else level,
         citation=None if abstained else "RES5596-N2",
         confidence=0.7,
         abstained=abstained,
         reason="evidencia_insuficiente" if abstained else "ok",
         retrieved=[RankedChunk(chunk, 0.5)],
-    )
+    ))
 
 
 def _record(case_id="C1", abstained=False):

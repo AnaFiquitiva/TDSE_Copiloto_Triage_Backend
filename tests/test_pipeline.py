@@ -130,6 +130,71 @@ class TestGeminiBackendFallback(unittest.TestCase):
             self.assertEqual(completeness([record])["completitud"], 1.0)
 
 
+class TestGuardrailInPipeline(unittest.TestCase):
+    def _llm_choosing(self, citation, level):
+        chunk = Chunk(citation, "texto", "niveles", "reformatted", level=level)
+        return LLMBackedGenerator(
+            _FixedRetriever([RankedChunk(chunk, 0.9)]),
+            generate_fn=lambda prompt: {"citation": citation, "abstain": False, "reasoning": "x"},
+        )
+
+    def test_rule_raises_model_level_and_is_audited(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            audit_path = Path(tmp) / "audit.jsonl"
+            pipeline = CopilotoPipeline(
+                corpus_format="reformatted",
+                audit_path=audit_path,
+                llm_generator=self._llm_choosing("RES5596-N4", 4),
+            )
+            s = pipeline.run_case("G1", "Dice que ya tiene todo listo para hacerse dano esta noche.")
+            self.assertEqual((s.n_modelo, s.n_reglas, s.n_final, s.level), (4, 2, 2, 2))
+            self.assertEqual(s.citation, "ALARMA-SUICIDA-GRAVE")
+            self.assertEqual(s.model_citation, "RES5596-N4")
+            record = AuditLog(audit_path).read_all()[0]
+            self.assertEqual((record["n_modelo"], record["n_reglas"], record["n_final"]), (4, 2, 2))
+            self.assertEqual(record["suggested_level"], 2)
+            self.assertEqual(record["alarms"][0]["rule_id"], "ALR-022")
+            self.assertEqual(completeness([record])["completitud"], 1.0)
+
+    def test_guardrail_disabled_keeps_model_level(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            pipeline = CopilotoPipeline(
+                corpus_format="reformatted",
+                audit_path=Path(tmp) / "audit.jsonl",
+                llm_generator=self._llm_choosing("RES5596-N4", 4),
+                use_guardrail=False,
+            )
+            s = pipeline.run_case("G2", "Dice que ya tiene todo listo para hacerse dano esta noche.")
+            self.assertEqual((s.level, s.n_final, s.n_reglas), (4, 4, None))
+
+    def test_fallback_also_goes_through_guardrail(self):
+        with tempfile.TemporaryDirectory() as tmp, _offline():
+            pipeline = CopilotoPipeline(corpus_format="reformatted", audit_path=Path(tmp) / "audit.jsonl")
+            s = pipeline.run_case("G3", "vengo por un certificado medico y ademas no respira bien, no respira")
+            self.assertTrue(s.degraded)
+            self.assertEqual(s.n_reglas, 1)
+            if not s.abstained:
+                self.assertEqual(s.n_final, 1)
+            else:
+                self.assertTrue(s.escalated)
+
+    def test_abstention_is_escalated_in_pipeline(self):
+        chunk = Chunk("RES5596-N3", "texto", "niveles", "reformatted", level=3)
+        abstaining = LLMBackedGenerator(
+            _FixedRetriever([RankedChunk(chunk, 0.2)]),
+            generate_fn=lambda prompt: {"citation": None, "abstain": True, "reasoning": "sin evidencia"},
+        )
+        with tempfile.TemporaryDirectory() as tmp:
+            audit_path = Path(tmp) / "audit.jsonl"
+            pipeline = CopilotoPipeline(
+                corpus_format="reformatted", audit_path=audit_path, llm_generator=abstaining
+            )
+            s = pipeline.run_case("G4", "No me siento bien, algo me pasa pero no sabria decir que es.")
+            self.assertTrue(s.abstained)
+            self.assertTrue(s.escalated)
+            self.assertTrue(AuditLog(audit_path).read_all()[0]["escalated"])
+
+
 class _FixedRetriever:
     def __init__(self, ranked):
         self._ranked = ranked

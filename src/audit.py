@@ -60,6 +60,12 @@ SUGGESTION_FIELDS = (
     "confidence",
     "abstained",
     "abstain_reason",
+    "use_guardrail",
+    "alarms",
+    "n_modelo",
+    "n_reglas",
+    "n_final",
+    "escalated",
     "human_decision",
     "prev_hash",
     "hash",
@@ -84,6 +90,9 @@ SUGGESTION_NON_NULL = (
     "retrieved_fragments",
     "confidence",
     "abstained",
+    "use_guardrail",
+    "alarms",
+    "escalated",
     "prev_hash",
     "hash",
 )
@@ -142,6 +151,8 @@ def build_audit_record(
     embedding_model: str,
     prompt_version: str | None,
     thresholds: dict,
+    use_guardrail: bool = False,
+    alarm_rules_version: str | None = None,
 ) -> dict:
     """Construye un evento de sugerencia (sin ``prev_hash`` ni ``hash``, que
     los asigna ``AuditLog.append``)."""
@@ -174,6 +185,15 @@ def build_audit_record(
         "confidence": round(suggestion.confidence, 6),
         "abstained": suggestion.abstained,
         "abstain_reason": suggestion.reason if suggestion.abstained else None,
+        # Componente 1 + guardarraíl (src/extraction.py, src/guardrail.py).
+        "use_guardrail": use_guardrail,
+        "alarm_rules_version": alarm_rules_version,
+        "alarms": list(suggestion.alarms),
+        "n_modelo": suggestion.n_modelo,
+        "n_reglas": suggestion.n_reglas,
+        "n_final": suggestion.n_final,
+        "model_citation": suggestion.model_citation,
+        "escalated": suggestion.escalated,
         # La decisión final del personal de salud se registra como un evento
         # aparte (AuditLog.append_decision), nunca sobrescribiendo este campo,
         # como lo exige el principio de "asistencia, no decisión".
@@ -195,7 +215,7 @@ def _missing_fields(record: dict) -> list[str]:
         # Reglas condicionales: una sugerencia con nivel exige cita; una
         # abstención exige su motivo; la ruta Gemini exige versión de prompt.
         if record.get("abstained") is False:
-            for f in ("suggested_level", "citation"):
+            for f in ("suggested_level", "citation", "n_modelo", "n_final"):
                 if f in record and record[f] is None:
                     missing.append(f)
         if record.get("abstained") is True and record.get("abstain_reason") is None:
@@ -301,7 +321,8 @@ class AuditLog:
         if action not in DECISION_ACTIONS:
             raise ValueError(f"action debe ser uno de {DECISION_ACTIONS}")
 
-        suggested = original.get("n_final", original.get("suggested_level"))
+        # suggested_level es el nivel FINAL presentado (n_final tras el guardarraíl).
+        suggested = original.get("suggested_level")
         if action == "confirma":
             if suggested is None:
                 raise ValueError(

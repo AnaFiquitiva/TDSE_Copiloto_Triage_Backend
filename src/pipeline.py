@@ -13,6 +13,10 @@ Dos rutas (ver README.md, sección "Arquitectura"):
   (`MinimalGenerator`), pedido de forma explícita (p. ej. en E1-E4, para que
   el estudio de recuperación sea reproducible sin red). Queda registrado como
   ``backend_used="deterministic"`` y NO es modo degradado.
+
+Flujo de ``run_case`` (Sección 4): extracción de alarmas (componente 1) ->
+ruta principal o respaldo -> guardarraíl monótono ``min(n_modelo, n_reglas)``
+si ``use_guardrail`` (también sobre el respaldo) -> registro de auditoría.
 """
 from __future__ import annotations
 
@@ -21,7 +25,9 @@ from pathlib import Path
 
 from . import llm_client
 from .audit import DETERMINISTIC_GENERATOR_VERSION, AuditLog, build_audit_record
+from .extraction import AlarmDetector
 from .generator import MIN_RELATIVE_MARGIN, MIN_SCORE, MinimalGenerator, Suggestion
+from .guardrail import apply_guardrail, finalize_without_guardrail
 from .ingest import Chunk, corpus_hash, load_corpus
 from .llm_client import LLMUnavailableError
 from .llm_generator import PROMPT_VERSION, LLMBackedGenerator
@@ -69,6 +75,8 @@ class CopilotoPipeline:
         audit_path: Path = DEFAULT_AUDIT_PATH,
         backend: str = "gemini",
         llm_generator=None,
+        use_guardrail: bool = True,
+        detector: AlarmDetector | None = None,
     ):
         if backend not in BACKENDS:
             raise ValueError("backend debe ser 'gemini' o 'deterministic'")
@@ -76,6 +84,8 @@ class CopilotoPipeline:
         self.embedding_mode = embedding_mode
         self.k = k
         self.backend = backend
+        self.use_guardrail = use_guardrail
+        self.detector = detector or AlarmDetector()
         self.corpus_hash = _cached_corpus_hash(corpus_format)
         self.generator = build_generator(corpus_format, embedding_mode, k=k)
         self._llm_generator = llm_generator
@@ -114,7 +124,12 @@ class CopilotoPipeline:
         return suggestion
 
     def run_case(self, case_id: str, patient_text: str) -> Suggestion:
+        extraction = self.detector.extract(patient_text)
         suggestion = self._suggest(patient_text)
+        if self.use_guardrail:
+            suggestion = apply_guardrail(suggestion, extraction)
+        else:
+            suggestion = finalize_without_guardrail(suggestion)
 
         if suggestion.backend_used == BACKEND_GEMINI:
             generation_model = llm_client.GENERATION_MODEL
@@ -136,6 +151,8 @@ class CopilotoPipeline:
             embedding_model=embedding_model,
             prompt_version=prompt_version,
             thresholds=self._thresholds(),
+            use_guardrail=self.use_guardrail,
+            alarm_rules_version=self.detector.version if self.use_guardrail else None,
         )
         self.last_record = self.audit_log.append(record)
         return suggestion

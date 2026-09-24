@@ -27,12 +27,50 @@ export interface BaselineResult {
   matched_keyword: string | null
 }
 
+export type BackendUsed = 'gemini' | 'deterministic_fallback' | 'deterministic'
+
+export interface AlarmHit {
+  rule_id: string
+  level: number
+  citation: string
+  matched_pattern: string
+  text: string | null
+}
+
 export interface ConsultaResponse {
   suggestion: Suggestion
   retrieved: RetrievedFragment[]
   baseline: BaselineResult
-  backend_used: string
+  backend_used: BackendUsed
+  record_hash: string
+  degraded: boolean
+  escalated: boolean
+  n_modelo: number | null
+  n_reglas: number | null
+  n_final: number | null
+  model_citation: string | null
+  alarms: AlarmHit[]
+  cited_fragment_text: string | null
   disclaimer: string
+}
+
+export type DecisionAction = 'confirma' | 'corrige'
+
+export interface DecisionRequest {
+  record_hash: string
+  action: DecisionAction
+  final_level?: number
+  reason?: string
+  review_seconds: number
+  user?: string
+}
+
+export interface DecisionResponse {
+  event_hash: string
+  ref_hash: string
+  action: DecisionAction
+  final_level: number
+  suggested_level: number | null
 }
 
 // Las métricas pueden venir en null (NaN en Python: p. ej. sin casos I-II).

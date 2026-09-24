@@ -1,15 +1,17 @@
 import { useState } from 'react'
-import { BookOpen, Database, ExternalLink, FlaskConical, MessageSquareText, Stethoscope } from 'lucide-react'
+import { BookOpen, ClipboardCheck, Database, ExternalLink, FlaskConical, MessageSquareText, Stethoscope } from 'lucide-react'
 import clsx from 'clsx'
 
 import { ConsultaView } from './views/ConsultaView'
 import { ExperimentoView } from './views/ExperimentoView'
 import { DatasetView } from './views/DatasetView'
 import { ExplorarView } from './views/ExplorarView'
+import { RevisionView } from './views/RevisionView'
 
-type Tab = 'consulta' | 'experimento' | 'dataset' | 'explorar'
+type Tab = 'revision' | 'consulta' | 'experimento' | 'dataset' | 'explorar'
 
 const NAV_ITEMS: { id: Tab; label: string; icon: typeof MessageSquareText }[] = [
+  { id: 'revision', label: 'Revisión', icon: ClipboardCheck },
   { id: 'consulta', label: 'Consulta individual', icon: MessageSquareText },
   { id: 'experimento', label: 'Experimento 2x2', icon: FlaskConical },
   { id: 'dataset', label: 'Dataset real', icon: Database },
@@ -73,6 +75,7 @@ export default function App() {
       </aside>
 
       <main className="relative z-10 flex-1 overflow-y-auto px-6 py-8 sm:px-10">
+        {tab === 'revision' && <RevisionView />}
         {tab === 'consulta' && <ConsultaView />}
         {tab === 'experimento' && <ExperimentoView />}
         {tab === 'dataset' && <DatasetView />}

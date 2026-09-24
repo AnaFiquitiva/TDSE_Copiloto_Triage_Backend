@@ -263,12 +263,22 @@ def verify_chain(records: list[dict]) -> tuple[bool, int | None]:
 
 
 class AuditLog:
-    """Registro JSONL de solo anexado con hash encadenado."""
+    """Registro JSONL de solo anexado con hash encadenado.
+
+    El candado es por ARCHIVO (compartido entre instancias), porque varias
+    instancias pueden escribir el mismo registro desde hilos distintos (p. ej.
+    la API web: una por consulta y otra por decisión), y dos anexos
+    simultáneos leerían el mismo ``prev_hash`` y romperían la cadena."""
+
+    _locks: dict[str, threading.Lock] = {}
+    _locks_guard = threading.Lock()
 
     def __init__(self, path: Path):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self._lock = threading.Lock()
+        key = str(self.path.resolve())
+        with AuditLog._locks_guard:
+            self._lock = AuditLog._locks.setdefault(key, threading.Lock())
 
     def read_all(self) -> list[dict]:
         if not self.path.exists():

@@ -16,15 +16,16 @@ Uso:
 from __future__ import annotations
 
 import sys
+from functools import lru_cache
 from pathlib import Path
 from typing import Literal, Optional
 
 ROOT = Path(__file__).resolve().parent.parent.parent
 sys.path.insert(0, str(ROOT))
 
-from fastapi import FastAPI, HTTPException  # noqa: E402
+from fastapi import FastAPI, HTTPException, Query  # noqa: E402
 from fastapi.middleware.cors import CORSMiddleware  # noqa: E402
-from pydantic import BaseModel  # noqa: E402
+from pydantic import BaseModel, Field, model_validator  # noqa: E402
 
 from experiments import run_experiment  # noqa: E402
 from experiments.analyze_external_data import (  # noqa: E402
@@ -37,6 +38,7 @@ from experiments.analyze_external_data import (  # noqa: E402
     load_rows,
     time_to_attention_minutes,
 )
+from src.audit import AuditLog, completeness  # noqa: E402
 from src.baseline import RuleBasedBaseline  # noqa: E402
 from src.ingest import load_corpus  # noqa: E402
 from src.pipeline import CopilotoPipeline  # noqa: E402
@@ -55,8 +57,33 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-DEFAULT_AUDIT_PATH = ROOT / "results" / "audit_web.jsonl"
+# Registro v2 (hash encadenado). No reutiliza results/audit_web.jsonl, que en
+# instalaciones previas contiene eventos v1 sin hash y rompería la cadena.
+DEFAULT_AUDIT_PATH = ROOT / "results" / "audit_web_v2.jsonl"
 _baseline = RuleBasedBaseline()
+
+
+@lru_cache(maxsize=None)
+def _pipeline(corpus_format: str, embedding_mode: str, backend: str, audit_path: str) -> CopilotoPipeline:
+    """Un pipeline por configuración (construirlo carga el corpus y la caché
+    de embeddings; no tiene sentido repetirlo en cada consulta)."""
+    return CopilotoPipeline(
+        corpus_format=corpus_format, embedding_mode=embedding_mode, backend=backend, audit_path=Path(audit_path)
+    )
+
+
+@lru_cache(maxsize=None)
+def _chunk_texts(corpus_format: str) -> dict[str, str]:
+    return {c.chunk_id: c.text for c in load_corpus(corpus_format)}
+
+
+def _fragment_text(citation: Optional[str], corpus_format: str) -> Optional[str]:
+    """Texto íntegro del fragmento citado. Las citas de las reglas de alarma
+    son ids semánticos del corpus reformateado (el crudo usa ids
+    posicionales), así que se buscan también allí."""
+    if citation is None:
+        return None
+    return _chunk_texts(corpus_format).get(citation) or _chunk_texts("reformatted").get(citation)
 
 
 class ConsultaRequest(BaseModel):
@@ -87,15 +114,60 @@ class BaselineOut(BaseModel):
     matched_keyword: Optional[str]
 
 
+class AlarmOut(BaseModel):
+    rule_id: str
+    level: int
+    citation: str
+    matched_pattern: str
+    text: Optional[str] = None
+
+
 class ConsultaResponse(BaseModel):
     suggestion: SuggestionOut
     retrieved: list[RetrievedFragment]
     baseline: BaselineOut
     backend_used: str
+    record_hash: str
+    degraded: bool
+    escalated: bool
+    n_modelo: Optional[int]
+    n_reglas: Optional[int]
+    n_final: Optional[int]
+    model_citation: Optional[str]
+    alarms: list[AlarmOut]
+    # Texto íntegro del fragmento citado por la sugerencia final (o, en una
+    # abstención con alarma, el de la alarma de referencia).
+    cited_fragment_text: Optional[str]
     disclaimer: str = (
-        "Esta sugerencia asiste, no decide. La clasificación final es "
-        "responsabilidad del personal de salud."
+        "Sugerencia de apoyo. La clasificación final es responsabilidad del "
+        "profesional de salud."
     )
+
+
+class DecisionRequest(BaseModel):
+    record_hash: str = Field(min_length=64, max_length=64)
+    action: Literal["confirma", "corrige"]
+    final_level: Optional[int] = Field(default=None, ge=1, le=5)
+    reason: Optional[str] = None
+    review_seconds: float = Field(ge=0)
+    user: Optional[str] = None
+
+    @model_validator(mode="after")
+    def _correction_needs_level_and_reason(self):
+        if self.action == "corrige":
+            if self.final_level is None:
+                raise ValueError("'corrige' exige final_level (1-5).")
+            if not self.reason or not self.reason.strip():
+                raise ValueError("'corrige' exige un motivo.")
+        return self
+
+
+class DecisionResponse(BaseModel):
+    event_hash: str
+    ref_hash: str
+    action: str
+    final_level: int
+    suggested_level: Optional[int]
 
 
 @app.get("/api/health")
@@ -109,15 +181,14 @@ def consulta(req: ConsultaRequest) -> ConsultaResponse:
     if not texto:
         raise HTTPException(status_code=400, detail="El relato no puede estar vacío.")
 
-    pipeline = CopilotoPipeline(
-        corpus_format=req.corpus_format,
-        embedding_mode=req.embedding_mode,
-        backend=req.backend,
-        audit_path=DEFAULT_AUDIT_PATH,
-    )
+    pipeline = _pipeline(req.corpus_format, req.embedding_mode, req.backend, str(DEFAULT_AUDIT_PATH))
     suggestion = pipeline.run_case("web", texto)
-    backend_used = suggestion.backend_used
+    record = pipeline.last_record
     baseline_result = _baseline.classify(texto)
+
+    reference_citation = suggestion.citation
+    if reference_citation is None and suggestion.alarms:
+        reference_citation = min(suggestion.alarms, key=lambda a: a["level"])["citation"]
 
     return ConsultaResponse(
         suggestion=SuggestionOut(
@@ -138,7 +209,62 @@ def consulta(req: ConsultaRequest) -> ConsultaResponse:
             citation=baseline_result.citation,
             matched_keyword=baseline_result.matched_keyword,
         ),
-        backend_used=backend_used,
+        backend_used=suggestion.backend_used,
+        record_hash=record["hash"],
+        degraded=suggestion.degraded,
+        escalated=suggestion.escalated,
+        n_modelo=suggestion.n_modelo,
+        n_reglas=suggestion.n_reglas,
+        n_final=suggestion.n_final,
+        model_citation=suggestion.model_citation,
+        alarms=[
+            AlarmOut(**a, text=_fragment_text(a["citation"], req.corpus_format)) for a in suggestion.alarms
+        ],
+        cited_fragment_text=_fragment_text(reference_citation, req.corpus_format),
+    )
+
+
+@app.post("/api/decision", response_model=DecisionResponse)
+def decision(req: DecisionRequest) -> DecisionResponse:
+    """Registra la decisión del profesional como un evento nuevo, encadenado,
+    que referencia la sugerencia (nunca reescribe el evento original)."""
+    log = AuditLog(DEFAULT_AUDIT_PATH)
+    try:
+        event = log.append_decision(
+            req.record_hash,
+            req.action,
+            final_level=req.final_level,
+            reason=req.reason,
+            user=req.user,
+            review_seconds=req.review_seconds,
+        )
+    except KeyError:
+        raise HTTPException(status_code=404, detail="No existe una sugerencia con ese record_hash.")
+    except ValueError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+    return DecisionResponse(
+        event_hash=event["hash"],
+        ref_hash=event["ref_hash"],
+        action=event["action"],
+        final_level=event["final_level"],
+        suggested_level=event["suggested_level"],
+    )
+
+
+@app.get("/api/auditoria")
+def auditoria(limit: int = Query(50, ge=1, le=1000)) -> dict:
+    """Últimos eventos del registro web, estado de la cadena de hashes y
+    completitud del registro (métrica del paper)."""
+    records = AuditLog(DEFAULT_AUDIT_PATH).read_all()
+    ok, first_bad = AuditLog(DEFAULT_AUDIT_PATH).verify_chain()
+    return run_experiment._nan_to_none(
+        {
+            "total": len(records),
+            "events": records[-limit:],
+            "cadena_valida": ok,
+            "primer_evento_invalido": first_bad,
+            "completitud": completeness(records),
+        }
     )
 
 

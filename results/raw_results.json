@@ -5600,20 +5600,2904 @@
     },
     {
       "cell": "E5",
+      "n_eligible_cases": 66,
+      "n_abstained_among_eligible": 10,
+      "cobertura": 0.8484848484848485,
+      "S_sub_triage": 0.0,
+      "S_sub_triage_ci": {
+        "estimate": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n_boot": 2000
+      },
+      "S_por_nivel": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0
+      },
+      "S_pareado_vs_C0": {
+        "n": 56,
+        "S_celda": 0.0,
+        "S_C0": 0.375
+      },
+      "sensibilidad_I_II": 0.8787878787878788,
+      "sensibilidad_I_II_ci": {
+        "estimate": 0.8787878787878788,
+        "ci_low": 0.7575757575757576,
+        "ci_high": 0.9696969696969697,
+        "n_boot": 2000
+      },
+      "mcnemar_sens_I_II_vs_C0": {
+        "solo_celda_acierta": 14,
+        "solo_C0_acierta": 0,
+        "p_value": 0.0001220703125
+      },
+      "recall_at_1": 0.5606060606060606,
+      "recall_at_k": 0.8333333333333334,
+      "recall_at_k_ci": {
+        "estimate": 0.8333333333333334,
+        "ci_low": 0.7424242424242424,
+        "ci_high": 0.9242424242424242,
+        "n_boot": 2000
+      },
+      "mrr": 0.6563131313131314,
+      "fidelidad_citacion": 0.9285714285714286,
+      "tasa_abstencion_correcta": 1.0,
+      "tasa_abstencion_indebida": 0.15151515151515152,
+      "sobre_triage": 0.017857142857142856,
+      "acuerdo_exacto": 0.9821428571428571,
+      "tasa_modo_degradado": 0.0,
+      "n_escalados": 18,
+      "completitud_registro": 1.0,
+      "cadena_auditoria_valida": true,
       "corpus_format": "reformatted",
       "embedding_mode": "rrf(bm25+gemini) + LLM",
-      "no_evaluada": "no evaluada (sin API ni caché)"
+      "use_guardrail": false,
+      "n_casos_respaldo": 0,
+      "predicciones": [
+        {
+          "case_id": "C001",
+          "level": 1,
+          "citation": "RES5596-N1",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N1",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C002",
+          "level": 1,
+          "citation": "RES5596-N1",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "RES5596-N1",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C003",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C004",
+          "level": 1,
+          "citation": "ALARMA-FIEBRE-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C005",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DIFRESP-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C006",
+          "level": 1,
+          "citation": "ALARMA-TRAUMA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C007",
+          "level": 1,
+          "citation": "RES5596-N1",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N1",
+            "RES5596-N2",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C008",
+          "level": 2,
+          "citation": "ALARMA-DOLOR-TORACICO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C009",
+          "level": 2,
+          "citation": "ALARMA-DIFRESP-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C010",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2",
+            "RES5596-N1",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C011",
+          "level": 2,
+          "citation": "ALARMA-SUICIDA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-SUICIDA-LEVE",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C012",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N1",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C013",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C014",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "RES5596-N1",
+            "RES5596-N2"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C015",
+          "level": 3,
+          "citation": "ALARMA-DOLOR-TORACICO-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C016",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C017",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-FIEBRE-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C018",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N4",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N3",
+            "RES5596-N1"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C019",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "RES5596-N3",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C020",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C021",
+          "level": 4,
+          "citation": "ALARMA-SANGRADO-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C022",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "RES5596-N3",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-FIEBRE-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C023",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N3",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C024",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C025",
+          "level": 4,
+          "citation": "ALARMA-ALERGIA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-QUEMADURA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C026",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C027",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C028",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N5",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C029",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "RES5596-N3",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C030",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CEFALEA-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C035",
+          "level": 1,
+          "citation": "ALARMA-ABDOMEN-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C036",
+          "level": 4,
+          "citation": "ALARMA-ABDOMEN-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "RES5596-N3",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C037",
+          "level": 1,
+          "citation": "ALARMA-CONVULSION-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2",
+            "RES5596-N1",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C038",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C039",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C040",
+          "level": 4,
+          "citation": "ALARMA-CEFALEA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C041",
+          "level": 1,
+          "citation": "ALARMA-QUEMADURA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C042",
+          "level": 4,
+          "citation": "ALARMA-QUEMADURA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C043",
+          "level": 1,
+          "citation": "ALARMA-ALERGIA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C044",
+          "level": 4,
+          "citation": "ALARMA-ALERGIA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C045",
+          "level": 1,
+          "citation": "ALARMA-INTOXICACION-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C046",
+          "level": 3,
+          "citation": "ALARMA-INTOXICACION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C047",
+          "level": 1,
+          "citation": "ALARMA-GESTANTE-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C048",
+          "level": 5,
+          "citation": "ALARMA-GESTANTE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "RES5596-N5",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C031",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4",
+            "RES5596-N2",
+            "ALARMA-SUICIDA-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C032",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C033",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C034",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "RES5596-N4",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C049",
+          "level": 2,
+          "citation": "ALARMA-DOLOR-TORACICO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N4",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C050",
+          "level": 2,
+          "citation": "ALARMA-DIFRESP-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C051",
+          "level": 2,
+          "citation": "ALARMA-SUICIDA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "RES5596-N4",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C052",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C053",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N1",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C054",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C055",
+          "level": 2,
+          "citation": "ALARMA-DOLOR-TORACICO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C056",
+          "level": 2,
+          "citation": "ALARMA-SUICIDA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C057",
+          "level": 1,
+          "citation": "RES5596-N1",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C058",
+          "level": 1,
+          "citation": "ALARMA-TRAUMA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C059",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C060",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C061",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C062",
+          "level": 3,
+          "citation": "ALARMA-DOLOR-TORACICO-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C063",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C064",
+          "level": 3,
+          "citation": "ALARMA-INTOXICACION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "RES5596-N5"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C065",
+          "level": 3,
+          "citation": "ALARMA-SUICIDA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C066",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-FIEBRE-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C067",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "RES5596-N4",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C068",
+          "level": 4,
+          "citation": "ALARMA-QUEMADURA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C069",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C070",
+          "level": 5,
+          "citation": "ALARMA-GESTANTE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "RES5596-N5",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C071",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N4",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N5"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C072",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C073",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N4",
+            "RES5596-N2",
+            "RES5596-N5",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C074",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        }
+      ],
+      "repeticiones": {
+        "n": 3,
+        "modos_cache": [
+          "readonly",
+          "readonly",
+          "readonly"
+        ],
+        "cobertura": {
+          "media": 0.8484848484848485,
+          "min": 0.8484848484848485,
+          "max": 0.8484848484848485
+        },
+        "S_sub_triage": {
+          "media": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "sensibilidad_I_II": {
+          "media": 0.8787878787878788,
+          "min": 0.8787878787878788,
+          "max": 0.8787878787878788
+        },
+        "recall_at_1": {
+          "media": 0.5606060606060606,
+          "min": 0.5606060606060606,
+          "max": 0.5606060606060606
+        },
+        "recall_at_k": {
+          "media": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "mrr": {
+          "media": 0.6563131313131314,
+          "min": 0.6563131313131314,
+          "max": 0.6563131313131314
+        },
+        "sobre_triage": {
+          "media": 0.017857142857142856,
+          "min": 0.017857142857142856,
+          "max": 0.017857142857142856
+        },
+        "tasa_modo_degradado": {
+          "media": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
     },
     {
       "cell": "E6",
+      "n_eligible_cases": 66,
+      "n_abstained_among_eligible": 10,
+      "cobertura": 0.8484848484848485,
+      "S_sub_triage": 0.0,
+      "S_sub_triage_ci": {
+        "estimate": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n_boot": 2000
+      },
+      "S_por_nivel": {
+        "1": 0.0,
+        "2": 0.0,
+        "3": 0.0,
+        "4": 0.0,
+        "5": 0.0
+      },
+      "S_pareado_vs_C0": {
+        "n": 56,
+        "S_celda": 0.0,
+        "S_C0": 0.375
+      },
+      "sensibilidad_I_II": 0.8787878787878788,
+      "sensibilidad_I_II_ci": {
+        "estimate": 0.8787878787878788,
+        "ci_low": 0.7575757575757576,
+        "ci_high": 0.9696969696969697,
+        "n_boot": 2000
+      },
+      "mcnemar_sens_I_II_vs_C0": {
+        "solo_celda_acierta": 14,
+        "solo_C0_acierta": 0,
+        "p_value": 0.0001220703125
+      },
+      "recall_at_1": 0.5606060606060606,
+      "recall_at_k": 0.8333333333333334,
+      "recall_at_k_ci": {
+        "estimate": 0.8333333333333334,
+        "ci_low": 0.7424242424242424,
+        "ci_high": 0.9242424242424242,
+        "n_boot": 2000
+      },
+      "mrr": 0.6563131313131314,
+      "fidelidad_citacion": 0.9285714285714286,
+      "tasa_abstencion_correcta": 1.0,
+      "tasa_abstencion_indebida": 0.15151515151515152,
+      "sobre_triage": 0.017857142857142856,
+      "acuerdo_exacto": 0.9821428571428571,
+      "tasa_modo_degradado": 0.0,
+      "n_escalados": 18,
+      "completitud_registro": 1.0,
+      "cadena_auditoria_valida": true,
       "corpus_format": "reformatted",
-      "embedding_mode": "rrf(bm25+gemini) + LLM",
-      "no_evaluada": "no evaluada (sin API ni caché)"
+      "embedding_mode": "rrf(bm25+gemini) + LLM + guardarraíl",
+      "use_guardrail": true,
+      "n_casos_respaldo": 0,
+      "predicciones": [
+        {
+          "case_id": "C001",
+          "level": 1,
+          "citation": "RES5596-N1",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N1",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C002",
+          "level": 1,
+          "citation": "RES5596-N1",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "RES5596-N1",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C003",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-GESTANTE-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C004",
+          "level": 1,
+          "citation": "ALARMA-FIEBRE-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C005",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DIFRESP-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C006",
+          "level": 1,
+          "citation": "ALARMA-TRAUMA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C007",
+          "level": 1,
+          "citation": "RES5596-N1",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N1",
+            "RES5596-N2",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C008",
+          "level": 2,
+          "citation": "ALARMA-DOLOR-TORACICO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C009",
+          "level": 2,
+          "citation": "ALARMA-DIFRESP-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": 2
+        },
+        {
+          "case_id": "C010",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2",
+            "RES5596-N1",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C011",
+          "level": 2,
+          "citation": "ALARMA-SUICIDA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-SUICIDA-LEVE",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C012",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N1",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 2
+        },
+        {
+          "case_id": "C013",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C014",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "RES5596-N1",
+            "RES5596-N2"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": 2
+        },
+        {
+          "case_id": "C015",
+          "level": 3,
+          "citation": "ALARMA-DOLOR-TORACICO-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-ABDOMEN-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C016",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C017",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N3",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-FIEBRE-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C018",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N4",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N3",
+            "RES5596-N1"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C019",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "RES5596-N3",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C020",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C021",
+          "level": 4,
+          "citation": "ALARMA-SANGRADO-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C022",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "RES5596-N3",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-FIEBRE-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C023",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N3",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C024",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C025",
+          "level": 4,
+          "citation": "ALARMA-ALERGIA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-QUEMADURA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C026",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C027",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C028",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "RES5596-N5",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C029",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "RES5596-N3",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C030",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CEFALEA-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C035",
+          "level": 1,
+          "citation": "ALARMA-ABDOMEN-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C036",
+          "level": 4,
+          "citation": "ALARMA-ABDOMEN-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "RES5596-N3",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C037",
+          "level": 1,
+          "citation": "ALARMA-CONVULSION-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2",
+            "RES5596-N1",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C038",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C039",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CONVULSION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C040",
+          "level": 4,
+          "citation": "ALARMA-CEFALEA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C041",
+          "level": 1,
+          "citation": "ALARMA-QUEMADURA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C042",
+          "level": 4,
+          "citation": "ALARMA-QUEMADURA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C043",
+          "level": 1,
+          "citation": "ALARMA-ALERGIA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-INTOXICACION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C044",
+          "level": 4,
+          "citation": "ALARMA-ALERGIA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-QUEMADURA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C045",
+          "level": 1,
+          "citation": "ALARMA-INTOXICACION-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C046",
+          "level": 3,
+          "citation": "ALARMA-INTOXICACION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-INTOXICACION-GRAVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C047",
+          "level": 1,
+          "citation": "ALARMA-GESTANTE-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C048",
+          "level": 5,
+          "citation": "ALARMA-GESTANTE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "RES5596-N5",
+            "ALARMA-GESTANTE-GRAVE",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C031",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4",
+            "RES5596-N2",
+            "ALARMA-SUICIDA-LEVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C032",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N3"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C033",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C034",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "RES5596-N4",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N2"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C049",
+          "level": 2,
+          "citation": "ALARMA-DOLOR-TORACICO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "RES5596-N4",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": 2
+        },
+        {
+          "case_id": "C050",
+          "level": 2,
+          "citation": "ALARMA-DIFRESP-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N2",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-DIFRESP-GRAVE",
+            "ALARMA-ALERGIA-GRAVE",
+            "ALARMA-QUEMADURA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": 2
+        },
+        {
+          "case_id": "C051",
+          "level": 2,
+          "citation": "ALARMA-SUICIDA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "RES5596-N4",
+            "ALARMA-ABDOMEN-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C052",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": 2
+        },
+        {
+          "case_id": "C053",
+          "level": 2,
+          "citation": "RES5596-N2",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "RES5596-N1",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C054",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": 2
+        },
+        {
+          "case_id": "C055",
+          "level": 2,
+          "citation": "ALARMA-DOLOR-TORACICO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C056",
+          "level": 2,
+          "citation": "ALARMA-SUICIDA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 2,
+          "n_reglas": 2
+        },
+        {
+          "case_id": "C057",
+          "level": 1,
+          "citation": "RES5596-N1",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N1",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C058",
+          "level": 1,
+          "citation": "ALARMA-TRAUMA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-TRAUMA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "RES5596-N2",
+            "ALARMA-CEFALEA-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C059",
+          "level": 1,
+          "citation": "ALARMA-SANGRADO-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-SANGRADO-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-ABDOMEN-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C060",
+          "level": 1,
+          "citation": "ALARMA-CEFALEA-GRAVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CEFALEA-GRAVE",
+            "ALARMA-CEFALEA-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-CONVULSION-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 1,
+          "n_reglas": 1
+        },
+        {
+          "case_id": "C061",
+          "level": 3,
+          "citation": "RES5596-N3",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-ABDOMEN-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-TRAUMA-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C062",
+          "level": 3,
+          "citation": "ALARMA-DOLOR-TORACICO-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-ABDOMEN-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C063",
+          "level": 3,
+          "citation": "ALARMA-CONVULSION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-DIFRESP-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C064",
+          "level": 3,
+          "citation": "ALARMA-INTOXICACION-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "ALARMA-CONVULSION-GRAVE",
+            "ALARMA-QUEMADURA-LEVE",
+            "RES5596-N5"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C065",
+          "level": 3,
+          "citation": "ALARMA-SUICIDA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-SUICIDA-LEVE",
+            "ALARMA-SUICIDA-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N4"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 3,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C066",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-DIFRESP-LEVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "ALARMA-TRAUMA-LEVE",
+            "ALARMA-FIEBRE-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C067",
+          "level": 4,
+          "citation": "ALARMA-FIEBRE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-FIEBRE-LEVE",
+            "ALARMA-FIEBRE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "RES5596-N4",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C068",
+          "level": 4,
+          "citation": "ALARMA-QUEMADURA-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-QUEMADURA-LEVE",
+            "ALARMA-QUEMADURA-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-ALERGIA-LEVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 4,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C069",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "RES5596-N4",
+            "ALARMA-SANGRADO-GRAVE",
+            "RES5596-N2",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C070",
+          "level": 5,
+          "citation": "ALARMA-GESTANTE-LEVE",
+          "abstained": false,
+          "retrieved_ids": [
+            "ALARMA-GESTANTE-LEVE",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE",
+            "RES5596-N5",
+            "ALARMA-SANGRADO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C071",
+          "level": 5,
+          "citation": "RES5596-N5",
+          "abstained": false,
+          "retrieved_ids": [
+            "RES5596-N4",
+            "RES5596-N3",
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N5"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": false,
+          "n_modelo": 5,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C072",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N5",
+            "ALARMA-CONVULSION-LEVE",
+            "RES5596-N4",
+            "ALARMA-GESTANTE-GRAVE",
+            "ALARMA-INTOXICACION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C073",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "RES5596-N4",
+            "RES5596-N2",
+            "RES5596-N5",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        },
+        {
+          "case_id": "C074",
+          "level": null,
+          "citation": null,
+          "abstained": true,
+          "retrieved_ids": [
+            "ALARMA-DOLOR-TORACICO-LEVE",
+            "RES5596-N2",
+            "ALARMA-SANGRADO-GRAVE",
+            "ALARMA-DOLOR-TORACICO-GRAVE",
+            "ALARMA-CONVULSION-LEVE"
+          ],
+          "backend_used": "gemini",
+          "degraded": false,
+          "escalated": true,
+          "n_modelo": null,
+          "n_reglas": null
+        }
+      ],
+      "repeticiones": {
+        "n": 3,
+        "modos_cache": [
+          "readonly",
+          "readonly",
+          "readonly"
+        ],
+        "cobertura": {
+          "media": 0.8484848484848485,
+          "min": 0.8484848484848485,
+          "max": 0.8484848484848485
+        },
+        "S_sub_triage": {
+          "media": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "sensibilidad_I_II": {
+          "media": 0.8787878787878788,
+          "min": 0.8787878787878788,
+          "max": 0.8787878787878788
+        },
+        "recall_at_1": {
+          "media": 0.5606060606060606,
+          "min": 0.5606060606060606,
+          "max": 0.5606060606060606
+        },
+        "recall_at_k": {
+          "media": 0.8333333333333334,
+          "min": 0.8333333333333334,
+          "max": 0.8333333333333334
+        },
+        "mrr": {
+          "media": 0.6563131313131314,
+          "min": 0.6563131313131314,
+          "max": 0.6563131313131314
+        },
+        "sobre_triage": {
+          "media": 0.017857142857142856,
+          "min": 0.017857142857142856,
+          "max": 0.017857142857142856
+        },
+        "tasa_modo_degradado": {
+          "media": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
     }
   ],
-  "comparaciones": null,
+  "comparaciones": {
+    "H5_E6_vs_E5": {
+      "n_pareados": 66,
+      "n_ambos_responden": 56,
+      "S_a": 0.0,
+      "S_b": 0.0,
+      "sobre_triage_a": 0.017857142857142856,
+      "sobre_triage_b": 0.017857142857142856,
+      "mcnemar_sens_I_II": {
+        "solo_a_acierta": 0,
+        "solo_b_acierta": 0,
+        "p_value": 1.0
+      }
+    }
+  },
   "modelos": {
-    "generation_model": "gemini-2.5-flash-lite",
+    "generation_model": "gemini-3.5-flash-lite",
     "embedding_model": "gemini-embedding-001",
     "prompt_version": "triage-selector-v1",
     "alarm_rules_version": "alarmas-v1"

@@ -40,7 +40,7 @@ from pathlib import Path
 API_BASE = "https://generativelanguage.googleapis.com/v1beta/models"
 # ID estable (sin sufijo -latest) para que dos corridas separadas en el
 # tiempo usen el mismo modelo. Ver README.md, sección "Variables de entorno".
-DEFAULT_GENERATION_MODEL = "gemini-2.5-flash-lite"
+DEFAULT_GENERATION_MODEL = "gemini-3.5-flash-lite"
 DEFAULT_EMBEDDING_MODEL = "gemini-embedding-001"
 GENERATION_MODEL = os.environ.get("GEMINI_GENERATION_MODEL", DEFAULT_GENERATION_MODEL)
 EMBEDDING_MODEL = os.environ.get("GEMINI_EMBEDDING_MODEL", DEFAULT_EMBEDDING_MODEL)

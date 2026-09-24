@@ -245,14 +245,14 @@ desarrollo.
 | Variable | Por defecto | Uso |
 |---|---|---|
 | `GEMINI_API_KEY` | (ninguna) | Clave de la API. Sin ella (y sin caché), cada caso usa el respaldo determinista, marcado como modo degradado. |
-| `GEMINI_GENERATION_MODEL` | `gemini-2.5-flash-lite` | Modelo de generación, fijado a un ID estable (sin alias `-latest`). |
+| `GEMINI_GENERATION_MODEL` | `gemini-3.5-flash-lite` | Modelo de generación, fijado a un ID estable (sin alias `-latest`). |
 | `GEMINI_EMBEDDING_MODEL` | `gemini-embedding-001` | Modelo de embeddings. |
 | `GEMINI_CACHE_MODE` | `readwrite` | Modo de las cachés del LLM y de embeddings (ver abajo). |
 
 **ID usado en la evaluación:** los resultados de E5-E6 registran el modelo
 exacto en cada evento de auditoría (`generation_model`, `embedding_model`,
 `prompt_version`) y en la sección "Versiones" de `results/summary.md`. Con la
-configuración por defecto es `gemini-2.5-flash-lite` + `gemini-embedding-001`
+configuración por defecto es `gemini-3.5-flash-lite` + `gemini-embedding-001`
 con el prompt `triage-selector-v1`. Si el equipo usa otro ID, debe fijarlo con
 `GEMINI_GENERATION_MODEL` antes de correr el experimento y reportarlo.
 
@@ -481,8 +481,13 @@ Salida real de `python -m experiments.run_experiment` en esta versión
 | E2 | 0.41 | 0.074 [0.000–0.185] | 0.074 / 0.333 (27) | 0.212 [0.091–0.364] | p=0.077 | 0.288 | 0.561 [0.439–0.682] | 0.387 | 0.519 | 1.00 | 0.00 |
 | E3 | 0.50 | 0.212 [0.091–0.364] | 0.212 / 0.545 (33) | 0.485 [0.303–0.667] | p=1.000 | 0.379 | 0.621 [0.500–0.742] | 0.464 | 0.212 | 1.00 | 0.00 |
 | E4 | 0.56 | 0.108 [0.000–0.243] | 0.108 / 0.351 (37) | 0.394 [0.242–0.545] | p=0.774 | 0.409 | 0.667 [0.561–0.773] | 0.497 | 0.459 | 1.00 | 0.00 |
-| E5 | no evaluada (sin API ni caché) | | | | | | | | | | |
-| E6 | no evaluada (sin API ni caché) | | | | | | | | | | |
+| E5 | 0.85 | 0.000 [0.000–0.000] | 0.000 / 0.375 (56) | 0.879 [0.758–0.970] | p<0.001 (14:0) | 0.561 | 0.833 [0.742–0.924] | 0.656 | 0.018 | 1.00 | 0.00 |
+| E6 | 0.85 | 0.000 [0.000–0.000] | 0.000 / 0.375 (56) | 0.879 [0.758–0.970] | p<0.001 (14:0) | 0.561 | 0.833 [0.742–0.924] | 0.656 | 0.018 | 1.00 | 0.00 |
+
+E5-E6: `gemini-3.5-flash-lite` + `gemini-embedding-001`, prompt
+`triage-selector-v1`, reglas `alarmas-v1`; 3 repeticiones (la primera llenó
+la caché con la API, 0 casos degradados; las tres repeticiones dan cifras
+idénticas, como se espera con temperatura 0 y caché).
 
 Lectura honesta:
 
@@ -491,8 +496,21 @@ Lectura honesta:
   estadísticamente significativa (McNemar p ≥ 0.077).
 - El S bajo de E2/E4 se paga con cobertura baja: por eso se reporta el S
   pareado frente a C0 y la sensibilidad con la abstención como fallo.
-- E5 y E6 (la ruta principal y la hipótesis del guardarraíl) quedan pendientes
-  de una corrida con `GEMINI_API_KEY`; ver "Diseño experimental".
+- **H1 (ruta principal frente a C0):** E5/E6 clasifican en I-II 14 casos de
+  alto riesgo que C0 no, y C0 ninguno que E5/E6 no (McNemar exacto
+  p < 0.001); S pareado 0.000 frente a 0.375 de C0 sobre los 56 casos en que
+  ambos responden. La cobertura sube a 0.85 (frente a 0.41-0.56 en E1-E4).
+- **H5 (guardarraíl, E6 frente a E5): sin efecto medible en estos 74 casos.**
+  Cuando Gemini responde, nunca queda por debajo de una regla (21 casos con
+  alarma; el modelo nunca fue menos urgente), así que `min()` no cambia nada.
+  Los 4 fallos de sensibilidad I-II son abstenciones (C005, C013, C052,
+  C054); en 3 de ellas la regla detecta el nivel correcto, pero, por diseño,
+  una abstención con alarma se **escala** y muestra el nivel de la regla como
+  referencia, sin convertirlo en sugerencia, y la sensibilidad cuenta la
+  abstención como fallo. Si el equipo quiere que el guardarraíl cubra ese
+  caso, es una decisión de diseño que cambia la tabla del paper, no un ajuste
+  del código. Estos casos además motivaron parte de las reglas (sesgo a
+  posteriori): la validación real de H5 requiere `data/cases_nuevos.json`.
 - **Nota de calibración (histórica):** al ampliar el corpus y el gold
   standard, el léxico de `clinical_es` y la línea base C0 se extendieron una
   sola vez antes de congelar resultados; se probó y **descartó** agregar

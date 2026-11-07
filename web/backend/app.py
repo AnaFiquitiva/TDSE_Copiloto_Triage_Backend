@@ -15,6 +15,7 @@ Uso:
 """
 from __future__ import annotations
 
+import os
 import sys
 from functools import lru_cache
 from pathlib import Path
@@ -55,10 +56,17 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# Orígenes por defecto de Vite (dev) y de un build servido localmente. En
+# despliegue, el frontend (repositorio aparte, en Vercel) se agrega con:
+#   CORS_ORIGINS="https://mi-app.vercel.app,https://otro-dominio"   (exactos)
+#   CORS_ORIGIN_REGEX="https://mi-app-.*\.vercel\.app"         (previews)
+_DEFAULT_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:4173"]
+_extra_origins = [o.strip().rstrip("/") for o in os.environ.get("CORS_ORIGINS", "").split(",") if o.strip()]
+
 app.add_middleware(
     CORSMiddleware,
-    # Orígenes por defecto de Vite (dev) y de un build servido localmente.
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:4173"],
+    allow_origins=_DEFAULT_ORIGINS + _extra_origins,
+    allow_origin_regex=os.environ.get("CORS_ORIGIN_REGEX") or None,
     allow_methods=["*"],
     allow_headers=["*"],
 )

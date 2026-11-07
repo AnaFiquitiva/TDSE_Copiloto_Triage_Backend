@@ -172,8 +172,8 @@ python gui.py
 ## Interfaz web (React + TypeScript)
 
 Además de la interfaz de escritorio, el proyecto incluye una interfaz web más
-elaborada (`web/frontend/`, React 19 + TypeScript + Vite + Tailwind CSS v4 +
-Recharts) respaldada por una API REST (`web/backend/`, FastAPI). A diferencia
+elaborada (repositorio aparte **TDSE_Copiloto_Triage_Frontend**, React 19 +
+TypeScript + Vite + Tailwind CSS v4 + Recharts) respaldada por una API REST (`web/backend/`, FastAPI). A diferencia
 del resto del pipeline, **esta capa sí tiene dependencias de terceros**,
 aisladas a propósito en sus propios `requirements.txt`/`package.json`: el
 pipeline principal (`src/`, `experiments/`, `demo.py`, `gui.py`) sigue
@@ -219,8 +219,8 @@ pipeline aplica aquí).
 pip install -r web/backend/requirements.txt
 uvicorn web.backend.app:app --reload --port 8000
 
-# Terminal 2: frontend (Vite dev server, con proxy a /api hacia el puerto 8000)
-cd web/frontend
+# Terminal 2: frontend (otro repositorio; Vite dev server con proxy de /api al 8000)
+cd ../TDSE_Copiloto_Triage_Frontend
 npm install
 npm run dev   # abre http://localhost:5173
 ```
@@ -392,10 +392,42 @@ demo.py           CLI de una consulta (ruta gemini por defecto; --backend determ
 gui.py            Interfaz de escritorio (Tkinter)
 web/
   backend/        API REST (FastAPI) + cds.py (CDS Hooks) + fhir_client.py (FHIR R4 opcional)
-  frontend/       Interfaz web (React + TypeScript + Vite + Tailwind + Recharts)
 requirements-embeddings.txt  Dependencia opcional del adaptador de embeddings locales
-docker-compose.yml           Demostración api + web + HAPI FHIR (ver "CDS Hooks y FHIR")
+docker-compose.yml           Demostración api + HAPI FHIR (ver "CDS Hooks y FHIR")
 ```
+
+## Despliegue (Azure App Service) — provisional
+
+El frontend se despliega por separado en Vercel y llama a esta API por su URL
+pública (`VITE_API_URL`); esta API debe autorizar ese origen por CORS.
+
+Una sola vez (Azure CLI, plan B1 o F1):
+
+```bash
+az group create -n rg-tdse-triage -l eastus
+az appservice plan create -g rg-tdse-triage -n plan-tdse-triage --is-linux --sku B1
+az webapp create -g rg-tdse-triage -p plan-tdse-triage -n <nombre-app> --runtime "PYTHON:3.12"
+az webapp config set -g rg-tdse-triage -n <nombre-app> \
+  --startup-file "python -m uvicorn web.backend.app:app --host 0.0.0.0 --port 8000"
+az webapp config appsettings set -g rg-tdse-triage -n <nombre-app> --settings \
+  SCM_DO_BUILD_DURING_DEPLOYMENT=true \
+  GEMINI_API_KEY=<clave> \
+  CORS_ORIGINS=https://<proyecto>.vercel.app \
+  CORS_ORIGIN_REGEX='https://<proyecto>-.*\.vercel\.app'
+# Habilitar credenciales de publicación (las apps nuevas las traen apagadas):
+az resource update -g rg-tdse-triage --namespace Microsoft.Web --resource-type basicPublishingCredentialsPolicies \
+  --parent sites/<nombre-app> -n scm --set properties.allow=true
+az webapp deployment list-publishing-profiles -g rg-tdse-triage -n <nombre-app> --xml
+```
+
+En GitHub: secret `AZURE_WEBAPP_PUBLISH_PROFILE` (el XML anterior) y variable
+`AZURE_WEBAPP_NAME`. Cada push a `main` corre las pruebas y despliega
+(`.github/workflows/ci-cd.yml`); al final verifica `GET /api/health`.
+
+Limitaciones de esta versión provisional: el registro de auditoría
+(`results/audit_web_v2.jsonl`) y las cachés de Gemini viven en el disco de la
+instancia y pueden perderse al redesplegar; FHIR queda desactivado
+(`FHIR_ENABLED=false`).
 
 ## Fuentes de datos reales
 

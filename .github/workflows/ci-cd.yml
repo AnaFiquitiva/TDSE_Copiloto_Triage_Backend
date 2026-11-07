@@ -1,0 +1,78 @@
+# CI/CD provisional del backend (FastAPI) -> Azure App Service (Linux, Python 3.12).
+#   - PR a main:   pruebas (pipeline + API).
+#   - push a main: pruebas y despliegue a la Web App.
+#
+# Secret requerido (Settings > Secrets and variables > Actions):
+#   AZURE_WEBAPP_PUBLISH_PROFILE  contenido XML del perfil de publicación
+#                                 (Portal > Web App > Descargar perfil de publicación)
+# Variable requerida (pestaña "Variables"):
+#   AZURE_WEBAPP_NAME             nombre de la Web App (p. ej. tdse-triage-api)
+#
+# Configuración de la Web App (una sola vez, ver README "Despliegue"):
+#   startup: python -m uvicorn web.backend.app:app --host 0.0.0.0 --port 8000
+#   app settings: SCM_DO_BUILD_DURING_DEPLOYMENT=true, GEMINI_API_KEY,
+#                 CORS_ORIGINS / CORS_ORIGIN_REGEX (URL del frontend en Vercel)
+name: Backend CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      # Sin clave y sin caché del LLM: ninguna prueba llama a la red.
+      GEMINI_CACHE_MODE: "off"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: web/backend/requirements.txt
+      - run: pip install -r web/backend/requirements.txt pytest
+      - name: Pruebas del pipeline
+        run: python -m unittest discover -s tests -v
+      - name: Pruebas de la API
+        run: python -m pytest web/backend/tests -q
+
+  deploy:
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.webapp-url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Empaquetar (sin pruebas ni metadatos de git)
+        run: |
+          zip -qr app.zip . \
+            -x '.git/*' '.github/*' 'tests/*' 'web/backend/tests/*' \
+               '*/__pycache__/*' '.env' '.env.*'
+
+      - name: Desplegar en Azure Web App
+        id: deploy
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: app.zip
+
+      - name: Smoke test /api/health
+        run: |
+          url="${{ steps.deploy.outputs.webapp-url }}/api/health"
+          for i in $(seq 1 20); do
+            if curl -fsS "$url"; then echo; exit 0; fi
+            echo "Esperando a que la app arranque ($i/20)..."; sleep 15
+          done
+          echo "La API no respondió en $url"; exit 1

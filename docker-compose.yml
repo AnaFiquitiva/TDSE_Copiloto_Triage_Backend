@@ -1,9 +1,10 @@
-# Demostracion local: API + interfaz web + servidor HAPI FHIR R4.
+# Demostracion local: API + servidor HAPI FHIR R4. La interfaz web vive en su
+# propio repositorio (TDSE_Copiloto_Triage_Frontend).
 #
 #   docker compose up --build                   # FHIR desactivado (por defecto)
 #   FHIR_ENABLED=true docker compose up --build # escribe cada decision en FHIR
 #
-# Interfaz: http://localhost:3000  | API: http://localhost:8000
+# API: http://localhost:8000
 # FHIR:     http://localhost:8080/fhir
 #
 # La API funciona aunque el servidor FHIR no este disponible: la decision se
@@ -28,15 +29,6 @@ services:
       # imagen). Se monta el directorio y no archivos sueltos: si una cache aun
       # no existe, Docker crearia un directorio en su lugar.
       - ./data:/app/data
-
-  web:
-    build:
-      context: .
-      dockerfile: web/frontend/Dockerfile
-    ports:
-      - "3000:80"
-    depends_on:
-      - api
 
   fhir:
     image: hapiproject/hapi:v8.4.0-2

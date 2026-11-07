@@ -13,3 +13,8 @@
 # "Interfaz web") SI tiene dependencias de terceros (FastAPI, React), pero
 # viven aisladas en sus propios requirements.txt/package.json y no afectan
 # a este archivo ni al pipeline principal.
+#
+# Despliegue en Azure App Service: Oryx instala SOLO el requirements.txt de la
+# raiz, asi que aqui se incluyen las dependencias de la API. Para correr el
+# pipeline offline no hace falta instalar nada de esto.
+-r web/backend/requirements.txt

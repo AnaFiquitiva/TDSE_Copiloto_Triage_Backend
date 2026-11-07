@@ -32,8 +32,8 @@ jobs:
       # Sin clave y sin caché del LLM: ninguna prueba llama a la red.
       GEMINI_CACHE_MODE: "off"
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
           cache: pip
@@ -52,7 +52,7 @@ jobs:
       name: production
       url: ${{ steps.deploy.outputs.webapp-url }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Empaquetar (sin pruebas ni metadatos de git)
         run: |
